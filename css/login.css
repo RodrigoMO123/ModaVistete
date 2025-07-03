@@ -1,0 +1,354 @@
+        /* Variables CSS (copiadas de main.css) */
+        :root {
+            --dark-primary: #1a202c; /* Carbón muy oscuro */
+            --light-bg: #f7fafc;    /* Gris muy claro, casi blanco */
+            --accent-bold: #e53e3e; /* Rojo oscuro o borgoña, fuerte */
+            --text-main: #2d3748;   /* Gris oscuro para el texto */
+            --text-light: #ffffff;  /* Blanco puro */
+            --border-strong: #a0aec0; /* Gris medio para bordes */
+            --subtle-blue: #4a5568; /* Azul grisáceo para detalles */
+        }
+
+        /* Reset básico y estilos generales (copiados de main.css) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('img/webp/zapato15.webp'); /* Imagen de fondo relacionada con zapatos */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden; /* Evita el scroll si el contenido es más pequeño */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay oscuro para mayor legibilidad */
+            z-index: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-bold);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dark-primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 35px;
+            border-radius: 5px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-bold);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background-color: #c53030;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--dark-primary);
+            border: 2px solid var(--dark-primary);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        /* Estilos específicos para la página de login */
+        .login-container {
+            position: relative;
+            z-index: 1; /* Asegura que esté por encima del overlay del body */
+            background-color: var(--text-light);
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .login-container .logo {
+            font-size: 3rem;
+            color: var(--dark-primary);
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--dark-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-strong);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-bold);
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.3);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-actions .forgot-password {
+            font-size: 0.95rem;
+            color: var(--subtle-blue);
+        }
+
+        .form-actions .forgot-password:hover {
+            color: var(--accent-bold);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .toggle-form-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--subtle-blue);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .toggle-form-link:hover {
+            color: var(--accent-bold);
+        }
+
+        .social-login-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-strong);
+        }
+
+        .social-login-section p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-btn.google {
+            background-color: #DB4437; /* Google Red */
+        }
+
+        .social-btn.google:hover {
+            background-color: #c0392b;
+        }
+
+        .social-btn.facebook {
+            background-color: #4267B2; /* Facebook Blue */
+        }
+
+        .social-btn.facebook:hover {
+            background-color: #365899;
+        }
+
+        /* Ocultar formulario de registro por defecto */
+        #registerForm {
+            display: none;
+        }
+
+        /* Estilos para el cuadro de mensaje personalizado (reemplazo de alert) */
+        .custom-message-box-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            justify-content: center;
+            align-items: center;
+            z-index: 3000; /* Asegura que esté por encima de todo */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .custom-message-box-overlay.show {
+            opacity: 1;
+            display: flex;
+        }
+
+        .custom-message-box-content {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .custom-message-box-overlay.show .custom-message-box-content {
+            transform: translateY(0);
+        }
+
+        .custom-message-box-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .custom-message-box-content .btn-primary {
+            padding: 10px 25px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Media Queries para Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px;
+            }
+            .login-container .logo {
+                font-size: 2.5rem;
+            }
+            .login-container h2 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            .form-group input {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+            .login-btn {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+            .social-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px;
+                border-radius: 10px;
+            }
+            .login-container .logo {
+                font-size: 2rem;
+            }
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+            .social-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .social-btn {
+                width: 100%;
+                border-radius: 8px;
+                padding: 10px 0;
+            }
+        }

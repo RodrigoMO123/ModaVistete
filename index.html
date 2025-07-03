@@ -1,0 +1,334 @@
+<!-- index.html-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vístete - Tu Estilo, Tu Camino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Modal Pop-up para Suscripción -->
+    <div id="newsletterModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-image">
+                <img src="img/jpg/zapato18.jpg" alt="Suscríbete a Vístete" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="modal-form-container">
+                <h3>Únete a Nuestra Élite</h3>
+                <p>Sé el primero en recibir las últimas novedades, ofertas exclusivas y acceso anticipado a nuestras colecciones más audaces.</p>
+                <form class="modal-newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico aquí..." required>
+                    <button type="submit" class="btn btn-primary">REGISTRARME</button>
+                    <div class="modal-checkbox-container">
+                        <input type="checkbox" id="dontShowAgain">
+                        <label for="dontShowAgain">No volver a mostrar</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalles del Producto -->
+    <div id="productDetailsModal" class="product-details-modal-overlay">
+        <div class="product-details-modal-content">
+            <button class="product-details-modal-close-btn">&times;</button>
+            <div class="product-details-modal-image-container">
+                <img id="modalProductImage" src="img/jpg/zapato17.jpg" alt="Imagen del Producto">
+            </div>
+            <div class="product-details-modal-info">
+                <h3 id="modalProductName">Nombre del Producto</h3>
+                <span class="price" id="modalProductPrice">$0.00</span>
+                <ul>
+                    <li>Disponibilidad: <span id="modalProductAvailability">En Stock</span></li>
+                    <li>Código: <span id="modalProductCode">N/A</span></li>
+                    <li>Tipo: <span id="modalProductType">N/A</span></li>
+                    <li>Vendedor: <span id="modalProductVendor">Vístete</span></li>
+                </ul>
+                <div class="size-options" id="modalProductSizes">
+                    <!-- Los tamaños se cargarán aquí -->
+                </div>
+                <div class="quantity-control">
+                    <button id="decreaseQuantity">-</button>
+                    <input type="number" id="productQuantity" value="1" min="1">
+                    <button id="increaseQuantity">+</button>
+                </div>
+                <button class="add-to-cart-full-btn">AÑADIR AL CARRITO</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">Vístete</a>
+            <button class="nav-toggle" aria-label="abrir navegación">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-menu-item"><a href="index.html" class="nav-menu-link">Inicio</a></li>
+                <li class="nav-menu-item"><a href="mujeres.html" class="nav-menu-link">Mujeres</a></li>
+                <li class="nav-menu-item"><a href="hombres.html" class="nav-menu-link">Hombres</a></li>
+                <li class="nav-menu-item"><a href="ninos.html" class="nav-menu-link">Niños</a></li>
+                <li class="nav-menu-item"><a href="nosotros.html" class="nav-menu-link">Nosotros</a></li>
+                <li class="nav-menu-item"><a href="contactenos.html" class="nav-menu-link">Contáctenos</a></li>
+                <li class="nav-menu-item icon-item"><a href="login.html" class="nav-menu-link" aria-label="Iniciar sesión"><i class="fas fa-user"></i></a></li>
+                <li class="nav-menu-item icon-item"><a href="carrito.html" class="nav-menu-link" aria-label="Ver carrito"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Banner principal con imágenes reales -->
+        <section class="hero-carousel">
+            <div class="carousel-slide active" style="background-image: url('img/jpg/zapato1.jpg');">
+                <div class="carousel-content">
+                    <h1>DESCUBRE LA POTENCIA EN CADA PISADA</h1>
+                    <p>Donde la ingeniería y el diseño se fusionan para desafiar tus límites.</p>
+                    <a href="#destacados" class="btn btn-primary">EXPLORA AHORA</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('img/jpg/zapato2.jpg');">
+                <div class="carousel-content">
+                    <h1>CATEGORÍA: DEPORTIVAS</h1>
+                    <p>Rendimiento y confort para superar tus metas. Diseñadas para el movimiento constante.</p>
+                    <a href="#" class="btn btn-primary">VER CATEGORÍA</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('img/jpg/zapato3.jpg');">
+                <div class="carousel-content">
+                    <h1>CATEGORÍA: CASUALES</h1>
+                    <p>Estilo sin esfuerzo para tu día a día. Comodidad que se adapta a tu ritmo urbano.</p>
+                    <a href="#" class="btn btn-primary">VER CATEGORÍA</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('img/jpg/zapato4.jpg');">
+                <div class="carousel-content">
+                    <h1>CATEGORÍA: FORMAL</h1>
+                    <p>Elegancia que define tu presencia. Acabados impecables para cada ocasión importante.</p>
+                    <a href="#" class="btn btn-primary">VER CATEGORÍA</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('img/jpg/zapato5.jpg');">
+                <div class="carousel-content">
+                    <h1>CATEGORÍA: BOTAS</h1>
+                    <p>Diseño robusto y protección para tus aventuras. Enfrenta cualquier terreno con confianza.</p>
+                    <a href="#" class="btn btn-primary">VER CATEGORÍA</a>
+                </div>
+            </div>
+            <button class="carousel-arrow carousel-arrow-left" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-arrow carousel-arrow-right" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- Sobre Nosotros -->
+        <section id="nosotros" class="about-section-robust">
+            <div class="about-content-robust">
+                <div class="about-image">
+                    <img src="img/jpg/zapato6.jpg" alt="Un zapato de diseño robusto sobre un fondo de estudio">
+                </div>
+                <div class="about-text">
+                    <h2>Nuestra Historia: Forjando el Futuro del Calzado</h2>
+                    <p>En <b>Vístete</b>, no solo creamos zapatos; diseñamos experiencias. Desde nuestros inicios, nos hemos dedicado a la búsqueda incansable de la perfección, combinando la artesanía tradicional con las innovaciones tecnológicas más vanguardistas. Cada par es una promesa de calidad, durabilidad y un estilo que redefine el estándar.</p>
+                    <p>Nuestra misión es empoderarte para que cada paso cuente. Ya sea que conquistes la ciudad o te aventures en lo desconocido, nuestros calzados están construidos para acompañarte, ofreciendo una comodidad inigualable y una resistencia a prueba de todo. Descubre la diferencia de un calzado que realmente está a tu altura.</p>
+                    <a href="#contacto" class="btn btn-secondary">CONOCE MÁS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Productos destacados con imágenes reales -->
+        <section id="destacados" class="featured-products-section section-container">
+            <h2 class="section-title">Nuestras Creaciones Destacadas</h2>
+            <div class="products-carousel-container">
+                <div class="products-carousel-track">
+                    <div class="product-card-carousel">
+                        <div class="product-card-carousel-img-container">
+                            <img src="img/jpg/zapato7.jpg" alt="Producto destacado 1">
+                            <span class="product-price-tag">$249.99</span>
+                            <div class="product-actions-overlay">
+                                <img src="img/jpg/zapato7.jpg" alt="Vista rápida" class="product-overlay-img">
+                                <button class="btn btn-secondary">Vista rápida</button>
+                            </div>
+                        </div>
+                        <div class="product-card-carousel-info">
+                            <h3>Bota Táctica "Apex"</h3>
+                            <p>Diseñadas para terrenos extremos, máxima tracción y resistencia a la abrasión.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-carousel">
+                        <div class="product-card-carousel-img-container">
+                            <img src="img/jpg/zapato8.jpg" alt="Producto destacado 2">
+                            <span class="product-price-tag">$139.50</span>
+                            <div class="product-actions-overlay">
+                                <img src="img/jpg/zapato8.jpg" alt="Vista rápida" class="product-overlay-img">
+                                <button class="btn btn-secondary">Vista rápida</button>
+                            </div>
+                        </div>
+                        <div class="product-card-carousel-info">
+                            <h3>Runner de Ciudad "Dash"</h3>
+                            <p>Ultraligeras y con amortiguación adaptable, ideales para conquistar el asfalto urbano.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-carousel">
+                        <div class="product-card-carousel-img-container">
+                            <img src="img/jpg/zapato9.jpg" alt="Producto destacado 3">
+                            <span class="product-price-tag">$99.00</span>
+                            <div class="product-actions-overlay">
+                                <img src="img/jpg/zapato9.jpg" alt="Vista rápida" class="product-overlay-img">
+                                <button class="btn btn-secondary">Vista rápida</button>
+                            </div>
+                        </div>
+                        <div class="product-card-carousel-info">
+                            <h3>Zapatilla Casual "Forge"</h3>
+                            <p>Comodidad inigualable y un diseño minimalista. Versatilidad para el día a día.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-carousel">
+                        <div class="product-card-carousel-img-container">
+                            <img src="img/jpg/zapato10.jpg" alt="Producto destacado 4">
+                            <span class="product-price-tag">$180.00</span>
+                            <div class="product-actions-overlay">
+                                <img src="img/jpg/zapato10.jpg" alt="Vista rápida" class="product-overlay-img">
+                                <button class="btn btn-secondary">Vista rápida</button>
+                            </div>
+                        </div>
+                        <div class="product-card-carousel-info">
+                            <h3>Botín Urbano "Vanguard"</h3>
+                            <p>La combinación perfecta de robustez y elegancia. Ideales para el entorno urbano.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-carousel">
+                        <div class="product-card-carousel-img-container">
+                            <img src="img/jpg/zapato11.jpg" alt="Producto destacado 5">
+                            <span class="product-price-tag">$165.00</span>
+                            <div class="product-actions-overlay">
+                                <img src="img/jpg/zapato11.jpg" alt="Vista rápida" class="product-overlay-img">
+                                <button class="btn btn-secondary">Vista rápida</button>
+                            </div>
+                        </div>
+                        <div class="product-card-carousel-info">
+                            <h3>Zapatos Oxford "Clásico Elite"</h3>
+                            <p>Diseño atemporal con un toque moderno. Perfecto para ocasiones formales y profesionales.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-carousel">
+                        <div class="product-card-carousel-img-container">
+                            <img src="img/jpg/zapato12.jpg" alt="Producto destacado 6">
+                            <span class="product-price-tag">$75.00</span>
+                            <div class="product-actions-overlay">
+                                <img src="img/jpg/zapato12.jpg" alt="Vista rápida" class="product-overlay-img">
+                                <button class="btn btn-secondary">Vista rápida</button>
+                            </div>
+                        </div>
+                        <div class="product-card-carousel-info">
+                            <h3>Sandalias Deportivas "Hydro"</h3>
+                            <p>Ligeras, transpirables y de secado rápido. Ideales para el verano y actividades acuáticas.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="products-carousel-nav-arrow products-carousel-nav-left" aria-label="Deslizar productos a la izquierda"><i class="fas fa-chevron-left"></i></button>
+                <button class="products-carousel-nav-arrow products-carousel-nav-right" aria-label="Deslizar productos a la derecha"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Categorías con imágenes reales -->
+        <section id="categorias" class="categories-draggable-section">
+            <h2 class="section-title">Encuentra Tu Estilo</h2>
+            <div class="categories-carousel-container">
+                <div class="categories-carousel-track">
+                    <div class="category-card-draggable">
+                        <img src="img/jpg/zapato13.jpg" alt="Categoría Fashion">
+                        <span class="category-title-overlay">FASHION</span>
+                    </div>
+                    <div class="category-card-draggable">
+                        <img src="img/jpg/zapato14.jpg" alt="Categoría Spring">
+                        <span class="category-title-overlay">SPRING</span>
+                    </div>
+                    <div class="category-card-draggable">
+                        <img src="img/jpg/zapato15.jpg" alt="Categoría Festival">
+                        <span class="category-title-overlay">FESTIVAL</span>
+                    </div>
+                    <div class="category-card-draggable">
+                        <img src="img/jpg/zapato16.jpg" alt="Categoría Season">
+                        <span class="category-title-overlay">SEASON</span>
+                    </div>
+                    <div class="category-card-draggable">
+                        <img src="img/jpg/zapato17.jpg" alt="Categoría Urban">
+                        <span class="category-title-overlay">URBAN</span>
+                    </div>
+                    <div class="category-card-draggable">
+                        <img src="img/jpg/zapato18.jpg" alt="Categoría Luxe">
+                        <span class="category-title-overlay">LUXE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Próximos diseños con imágenes reales -->
+        <section id="proximamente" class="coming-soon-section section-container">
+            <h2 class="section-title">Próximos Diseños Exclusivos</h2>
+            <div class="coming-soon-grid">
+                <div class="coming-soon-card coming-soon-left" data-original-product="0" data-hover-product="1">
+                    <img class="coming-soon-image-display" src="img/jpg/zapato16.jpg" alt="Próximo Diseño 1">
+                    <div class="coming-soon-text-overlay">
+                        <h3>¡LLEGAN PRONTO!</h3>
+                        <p class="coming-soon-product-name">Modelo Elegancia Clásica</p>
+                    </div>
+                    <div class="transition-cross-horizontal"></div>
+                    <div class="transition-cross-vertical"></div>
+                </div>
+                <div class="coming-soon-card coming-soon-right" data-original-product="1" data-hover-product="0">
+                    <img class="coming-soon-image-display" src="img/jpg/zapato17.jpg" alt="Próximo Diseño 2">
+                    <div class="coming-soon-text-overlay">
+                        <h3>¡LLEGAN PRONTO!</h3>
+                        <p class="coming-soon-product-name">Estilo Urbano Avant-Garde</p>
+                    </div>
+                    <div class="transition-cross-horizontal"></div>
+                    <div class="transition-cross-vertical"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Newsletter igual -->
+        <section id="novedades" class="cta-section-distinct">
+            <h2 class="section-title">Únete a la Élite del Calzado Vístete</h2>
+            <p>Sé el primero en acceder a lanzamientos exclusivos, ofertas especiales y contenido privilegiado de <b>Vístete</b>.</p>
+            <form class="cta-form">
+                <input type="email" placeholder="Tu correo electrónico aquí..." required>
+                <button type="submit" class="btn btn-primary">REGÍSTRATE AHORA</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer igual -->
+    <footer class="main-footer-robust">
+        <div class="footer-content-robust">
+            <div class="footer-section-robust about">
+                <h3>Vístete</h3>
+                <p>Redefiniendo el paso de la humanidad, un zapato a la vez. Innovación, calidad y estilo incomparable.</p>
+            </div>
+            <div class="footer-section-robust links">
+                <h3>Acceso Rápido</h3>
+                <ul>
+                    <li><a href="#destacados">Productos</a></li>
+                    <li><a href="#categorias">Categorías</a></li>
+                    <li><a href="#nosotros">Nuestra Misión</a></li>
+                    <li><a href="#proximamente">Próximamente</a></li>
+                    <li><a href="#novedades">Suscríbete</a></li>
+                </ul>
+            </div>
+            <div class="footer-section-robust social">
+                <h3>Conecta con Nosotros</h3>
+                <a href="#" target="_blank" aria-label="Facebook de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Icono de Facebook"></a>
+                <a href="#" target="_blank" aria-label="Instagram de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Icono de Instagram"></a>
+                <a href="#" target="_blank" aria-label="YouTube de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play--v1.png" alt="Icono de YouTube"></a>
+            </div>
+        </div>
+        <div class="footer-bottom-robust">
+            <p>&copy; 2025 Vístete. Todos los derechos reservados. Diseñado para la excelencia.</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

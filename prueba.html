@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sección de Carrusel de Categorías</title>
+    <!-- Fuentes de Google: Montserrat para títulos y Lora para texto de cuerpo -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos (necesario si usas iconos en otras partes de tu sitio) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Variables CSS (ajusta según tu tema principal) */
+        :root {
+            --dark-primary: #1a202c; /* Carbón muy oscuro */
+            --light-bg: #f7fafc; /* Gris muy claro, casi blanco */
+            --accent-bold: #e53e3e; /* Rojo oscuro o borgoña, fuerte */
+            --text-main: #2d3748; /* Gris oscuro para el texto */
+            --text-light: #ffffff; /* Blanco puro */
+            --border-strong: #a0aec0; /* Gris medio para bordes */
+            --subtle-blue: #4a5568; /* Azul grisáceo para detalles */
+
+            --transition-speed: 0.3s;
+            --transition-ease: ease-in-out;
+        }
+
+        /* Reset básico y estilos generales para asegurar que se vea bien de forma independiente */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Títulos de sección */
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.8rem;
+            margin-bottom: 70px;
+            position: relative;
+            padding-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--dark-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 6px;
+            background-color: var(--accent-bold);
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+
+        /* Categories Carousel Section */
+        .categories-draggable-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--light-bg);
+        }
+
+        .categories-carousel-container {
+            width: 100%;
+            overflow: hidden; /* Oculta el desbordamiento para la pista arrastrable */
+            position: relative;
+            padding: 20px 0; /* Añade algo de padding vertical */
+            cursor: grab; /* Indica que es arrastrable */
+        }
+
+        .categories-carousel-container:active {
+            cursor: grabbing;
+        }
+
+        .categories-carousel-track {
+            display: flex;
+            width: fit-content; /* Permite que el contenido defina el ancho */
+            transition: transform 0.3s ease-out; /* Transición suave para el ajuste */
+            will-change: transform; /* Optimiza para la animación */
+        }
+
+        .category-card-draggable {
+            flex: 0 0 auto; /* Evita que las tarjetas se estiren o encojan */
+            width: 280px; /* Ancho fijo para cada tarjeta */
+            height: 200px; /* Altura fija para consistencia */
+            margin: 0 10px; /* Espacio entre tarjetas */
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card-draggable:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .category-card-draggable img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card-draggable:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--text-light);
+            padding: 15px 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+        }
+
+        .category-card-draggable:hover .category-title-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Ajustes responsivos para el carrusel de categorías */
+        @media (max-width: 1024px) {
+            .categories-draggable-section {
+                padding: 50px 0;
+            }
+            .category-card-draggable {
+                width: 250px; /* Tarjetas ligeramente más pequeñas en pantallas medianas */
+                height: 180px;
+            }
+            .category-title-overlay {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories-draggable-section {
+                padding: 40px 0;
+            }
+            .category-card-draggable {
+                width: 220px; /* Tarjetas más pequeñas en móviles */
+                height: 160px;
+                margin: 0 8px;
+            }
+            .category-title-overlay {
+                font-size: 1.3rem;
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-draggable-section {
+                padding: 30px 0;
+            }
+            .category-card-draggable {
+                width: 180px; /* Tarjetas aún más pequeñas en pantallas muy pequeñas */
+                height: 140px;
+                margin: 0 5px;
+            }
+            .category-title-overlay {
+                font-size: 1.1rem;
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Categorías con imágenes reales y funcionalidad de arrastre/clic -->
+    <section id="categorias" class="categories-draggable-section">
+        <h2 class="section-title">Encuentra Su Estilo</h2>
+        <div class="categories-carousel-container">
+            <div class="categories-carousel-track">
+                <!-- Las tarjetas de categoría se generarán aquí con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Imágenes de ejemplo (reemplaza con tus propias URLs o rutas locales)
+            const allImages = [
+                'https://placehold.co/280x200/cccccc/333333?text=Zapatillas',
+                'https://placehold.co/280x200/cccccc/333333?text=Sandalias',
+                'https://placehold.co/280x200/cccccc/333333?text=Botas',
+                'https://placehold.co/280x200/cccccc/333333?text=Casual',
+                'https://placehold.co/280x200/cccccc/333333?text=Deporte',
+                'https://placehold.co/280x200/cccccc/333333?text=Escuela',
+                'https://placehold.co/280x200/cccccc/333333?text=Fiesta',
+                'https://placehold.co/280x200/cccccc/333333?text=Aventura'
+            ];
+
+            // Lógica del carrusel de categorías
+            const categoriesCarouselTrack = document.querySelector('.categories-carousel-track');
+            const categoriesCarouselContainer = document.querySelector('.categories-carousel-container');
+            let categoriesStartDragX = 0;
+            let categoriesCurrentX = 0;
+            let categoriesStartTransformX = 0;
+            let isDraggingCategories = false;
+            let dragThreshold = 5; // Píxeles para considerar un arrastre, no un clic
+
+            // Datos de las categorías (ejemplo, ajusta según sea necesario)
+            const categoryData = [
+                { name: 'Zapatillas', image: allImages[0], link: 'ninos.html?type=zapatillas' },
+                { name: 'Sandalias', image: allImages[1], link: 'ninos.html?type=sandalias' },
+                { name: 'Botas', image: allImages[2], link: 'ninos.html?type=botas' },
+                { name: 'Casual', image: allImages[3], link: 'ninos.html?type=casual' },
+                { name: 'Deporte', image: allImages[4], link: 'ninos.html?type=deporte' },
+                { name: 'Escuela', image: allImages[5], link: 'ninos.html?type=escuela' },
+                { name: 'Fiesta', image: allImages[6], link: 'ninos.html?type=fiesta' }
+            ];
+
+            // Función para renderizar las tarjetas de categoría
+            function renderCategoryCards() {
+                categoriesCarouselTrack.innerHTML = '';
+                // Duplica el contenido para un efecto de bucle infinito (triplica para un bucle más suave)
+                const duplicatedData = [...categoryData, ...categoryData, ...categoryData];
+
+                duplicatedData.forEach(cat => {
+                    const card = document.createElement('div');
+                    card.classList.add('category-card-draggable');
+                    card.innerHTML = `
+                        <img src="${cat.image}" alt="Categoría ${cat.name}" onerror="this.onerror=null;this.src='https://placehold.co/280x200/cccccc/333333?text=Imagen+No+Disp.'">
+                        <span class="category-title-overlay">${cat.name.toUpperCase()}</span>
+                    `;
+                    card.dataset.link = cat.link; // Almacena el enlace para el evento de clic
+
+                    // Prevenir clic en arrastre
+                    let isClick = true;
+                    card.addEventListener('mousedown', (e) => {
+                        isClick = true;
+                    });
+                    card.addEventListener('mousemove', (e) => {
+                        if (isDraggingCategories && Math.abs(e.pageX - categoriesStartDragX) > dragThreshold) {
+                            isClick = false;
+                        }
+                    });
+                    card.addEventListener('mouseup', (e) => {
+                        if (isClick) {
+                            window.location.href = card.dataset.link;
+                        }
+                    });
+                    card.addEventListener('touchstart', (e) => {
+                        isClick = true;
+                        categoriesStartDragX = e.touches[0].pageX; // Inicializa para el toque
+                    });
+                    card.addEventListener('touchmove', (e) => {
+                        if (isDraggingCategories && Math.abs(e.touches[0].pageX - categoriesStartDragX) > dragThreshold) {
+                            isClick = false;
+                        }
+                    });
+                    card.addEventListener('touchend', (e) => {
+                        if (isClick) {
+                            window.location.href = card.dataset.link;
+                        }
+                    });
+
+                    categoriesCarouselTrack.appendChild(card);
+                });
+
+                // Establece la posición inicial para el bucle infinito
+                // Asegúrate de que las tarjetas se rendericen antes de calcular el ancho
+                if (categoryData.length > 0) {
+                    const firstCard = categoriesCarouselTrack.querySelector('.category-card-draggable');
+                    if (firstCard) {
+                        // Calcula el ancho de la tarjeta incluyendo el margin-right (20px de margen horizontal total para 10px a cada lado)
+                        const categoryCardWidth = firstCard.offsetWidth + 20; 
+                        categoriesCurrentX = -categoryData.length * categoryCardWidth;
+                        categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+                    }
+                }
+            }
+
+            // Funcionalidad de arrastre
+            categoriesCarouselContainer.addEventListener('mousedown', (e) => {
+                isDraggingCategories = true;
+                categoriesStartDragX = e.pageX;
+                categoriesStartTransformX = categoriesCurrentX;
+                categoriesCarouselTrack.style.transition = 'none'; // Deshabilita la transición durante el arrastre
+            });
+
+            categoriesCarouselContainer.addEventListener('mousemove', (e) => {
+                if (!isDraggingCategories) return;
+                e.preventDefault(); // Previene la selección de texto durante el arrastre
+                const dragAmount = e.pageX - categoriesStartDragX;
+                categoriesCurrentX = categoriesStartTransformX + dragAmount;
+                categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+
+                // Lógica de bucle
+                if (categoryData.length > 0) {
+                    const firstCard = categoriesCarouselTrack.querySelector('.category-card-draggable');
+                    if (firstCard) {
+                        const totalOriginalWidth = categoryData.length * (firstCard.offsetWidth + 20); // Recalcula si es necesario
+                        if (categoriesCurrentX > 0) {
+                            categoriesCurrentX -= totalOriginalWidth;
+                            categoriesStartTransformX -= totalOriginalWidth; // Ajusta la transformación inicial para un salto sin interrupciones
+                            categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+                        } else if (Math.abs(categoriesCurrentX) > totalOriginalWidth * 2) { // Comprueba si hemos pasado la segunda copia
+                            categoriesCurrentX += totalOriginalWidth;
+                            categoriesStartTransformX += totalOriginalWidth; // Ajusta la transformación inicial para un salto sin interrupciones
+                            categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+                        }
+                    }
+                }
+            });
+
+            categoriesCarouselContainer.addEventListener('mouseup', () => {
+                isDraggingCategories = false;
+                categoriesCarouselTrack.style.transition = 'transform 0.3s ease-out'; // Vuelve a habilitar la transición después del arrastre
+            });
+
+            categoriesCarouselContainer.addEventListener('mouseleave', () => {
+                isDraggingCategories = false;
+                categoriesCarouselTrack.style.transition = 'transform 0.3s ease-out';
+            });
+
+            // Eventos táctiles para dispositivos móviles
+            categoriesCarouselContainer.addEventListener('touchstart', (e) => {
+                isDraggingCategories = true;
+                categoriesStartDragX = e.touches[0].pageX;
+                categoriesStartTransformX = categoriesCurrentX;
+                categoriesCarouselTrack.style.transition = 'none';
+            });
+
+            categoriesCarouselContainer.addEventListener('touchmove', (e) => {
+                if (!isDraggingCategories) return;
+                e.preventDefault(); // Previene el desplazamiento durante el arrastre
+                const dragAmount = e.touches[0].pageX - categoriesStartDragX;
+                categoriesCurrentX = categoriesStartTransformX + dragAmount;
+                categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+
+                // Lógica de bucle (igual que mousemove)
+                if (categoryData.length > 0) {
+                    const firstCard = categoriesCarouselTrack.querySelector('.category-card-draggable');
+                    if (firstCard) {
+                        const totalOriginalWidth = categoryData.length * (firstCard.offsetWidth + 20);
+                        if (categoriesCurrentX > 0) {
+                            categoriesCurrentX -= totalOriginalWidth;
+                            categoriesStartTransformX -= totalOriginalWidth;
+                            categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+                        } else if (Math.abs(categoriesCurrentX) > totalOriginalWidth * 2) {
+                            categoriesCurrentX += totalOriginalWidth;
+                            categoriesStartTransformX += totalOriginalWidth;
+                            categoriesCarouselTrack.style.transform = `translateX(${categoriesCurrentX}px)`;
+                        }
+                    }
+                }
+            });
+
+            categoriesCarouselContainer.addEventListener('touchend', () => {
+                isDraggingCategories = false;
+                categoriesCarouselTrack.style.transition = 'transform 0.3s ease-out';
+            });
+
+            // Llama a la función de renderizado al cargar el DOM
+            renderCategoryCards();
+        });
+    </script>
+</body>
+</html>

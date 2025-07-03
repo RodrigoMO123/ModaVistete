@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vístete - Carrito de Compras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+    <!-- Custom Message Box HTML -->
+    <div id="customMessageBox" class="custom-message-box-overlay">
+        <div class="custom-message-box-content">
+            <p id="customMessageText"></p>
+            <button class="btn btn-primary" id="customMessageCloseBtn">Aceptar</button>
+        </div>
+    </div>
+
+    <header class="cart-header">
+        <div class="cart-header-content">
+            <a href="index.html" class="logo">Vístete</a>
+            <a href="index.html" class="back-to-store"><i class="fas fa-arrow-left"></i> Regresar a la tienda</a>
+        </div>
+    </header>
+
+    <main class="checkout-main-container">
+        <!-- Barra de Progreso de Pasos -->
+        <div class="progress-bar">
+            <div class="progress-step" data-step="1">
+                <div class="progress-step-icon"><i class="fas fa-file-alt"></i></div>
+                <span class="progress-step-text">Paso 1</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="progress-step-icon"><i class="fas fa-shipping-fast"></i></div>
+                <span class="progress-step-text">Paso 2</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="progress-step-icon"><i class="fas fa-credit-card"></i></div>
+                <span class="progress-step-text">Paso 3</span>
+            </div>
+        </div>
+
+        <!-- Contenido del Carrito (Paso 0) -->
+        <section id="cartStep" class="checkout-step-content active">
+            <h2 class="section-title">Tu Carrito de Compras</h2>
+            <div class="cart-summary-grid">
+                <div class="cart-items-list" id="cartItemsList">
+                    <!-- Los productos del carrito se cargarán aquí dinámicamente -->
+                </div>
+                <div class="cart-summary">
+                    <h3>Resumen de la compra</h3>
+                    <div class="cart-summary-row">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal">S/ 0.00</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Envío</span>
+                        <span id="cartShipping">S/ 0.00</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Total</span>
+                        <span id="cartTotal">S/ 0.00</span>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-primary" id="finalizePurchaseBtn">FINALIZAR COMPRA</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Paso 1: Datos Personales (Correo y luego Formulario Completo) -->
+        <section id="personalDataStep" class="checkout-step-content">
+            <h2 class="section-title">Paso 1: Datos Personales</h2>
+            <div class="personal-data-form-full" id="personalDataFormFull">
+                <div class="form-group">
+                    <label for="personalEmail">Correo</label>
+                    <input type="email" id="personalEmail" placeholder="tu@correo.com" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="personalName">Nombre</label>
+                    <input type="text" id="personalName" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="personalLastName">Apellidos</label>
+                    <input type="text" id="personalLastName" placeholder="Tus apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="personalDocId">Documento de Identidad</label>
+                    <input type="text" id="personalDocId" placeholder="DNI o C.E." required>
+                </div>
+                <div class="form-group">
+                    <label for="personalPhone">Teléfono / Móvil</label>
+                    <input type="tel" id="personalPhone" placeholder="+51 9XX XXX XXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="personalAddress">Dirección</label>
+                    <input type="text" id="personalAddress" placeholder="Calle, número, piso, dpto." required>
+                </div>
+                <div class="form-group">
+                    <label for="personalDepartment">Departamento</label>
+                    <select id="personalDepartment" required>
+                        <option value="">Selecciona</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Arequipa">Arequipa</option>
+                        <option value="Cusco">Cusco</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="personalProvince">Provincia</label>
+                    <select id="personalProvince" required>
+                        <option value="">Selecciona</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Callao">Callao</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="personalDistrict">Distrito</label>
+                    <select id="personalDistrict" required>
+                        <option value="">Selecciona</option>
+                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                        <option value="Miraflores">Miraflores</option>
+                    </select>
+                </div>
+                <!-- Nuevo checkbox para "Deseo factura" -->
+                <div class="form-group invoice-checkbox-group">
+                    <label>
+                        <input type="checkbox" id="requestInvoice">
+                        Deseo factura
+                    </label>
+                </div>
+                <div class="terms-checkbox-group">
+                    <label>
+                        <input type="checkbox" id="acceptTerms" required>
+                        Acepto los <a href="#" target="_blank">Términos y Condiciones</a> y la <a href="#" target="_blank">Política de protección de datos personales</a>.
+                    </label>
+                    <label>
+                        <input type="checkbox" id="authorizeData">
+                        Autorizo el tratamiento de mis datos personales para fines adicionales conforme a lo establecido en la <a href="#" target="_blank">Política de Privacidad</a>.
+                    </label>
+                </div>
+                <div class="continue-btn-container">
+                    <button class="btn btn-primary" id="continuePersonalDataBtn">CONTINUAR</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Paso 2: Envío -->
+        <section id="shippingStep" class="checkout-step-content">
+            <h2 class="section-title">Paso 2: Envío</h2>
+            <div class="shipping-options">
+                <div class="shipping-option-group">
+                    <button class="shipping-option-btn selected" data-shipping-type="delivery" id="deliveryOptionBtn">
+                        <i class="fas fa-truck"></i> Enviar a la dirección
+                    </button>
+                    <button class="shipping-option-btn" data-shipping-type="pickup" id="pickupOptionBtn">
+                        <i class="fas fa-store"></i> Recoger en la tienda
+                    </button>
+                </div>
+            </div>
+
+            <div id="deliveryDetails" class="shipping-details-section active">
+                <h3>Detalles de Envío</h3>
+                <!-- Sección "Método de entrega" -->
+                <div class="delivery-method-option">
+                    <label>
+                        <input type="radio" name="deliveryMethod" value="standard" checked>
+                        En hora / 7 disponibles
+                    </label>
+                    <span>Gratis</span>
+                </div>
+
+                <!-- Sección "Complete su dirección de entrega" -->
+                <div class="current-delivery-address">
+                    <i class="fas fa-home"></i>
+                    <div class="current-delivery-address-text">
+                        <p>San Juan</p>
+                        <p>Castrovirreyna, Huancavelica</p>
+                        <a href="#">Cambiar</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryDepartment">Departamento</label>
+                    <select id="deliveryDepartment" required>
+                        <option value="">Selecciona</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Arequipa">Arequipa</option>
+                        <option value="Huancavelica">Huancavelica</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryProvince">Provincia</label>
+                    <select id="deliveryProvince" required>
+                        <option value="">Selecciona</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Callao">Callao</option>
+                        <option value="Castrovirreyna">Castrovirreyna</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryDistrict">Distrito</label>
+                    <select id="deliveryDistrict" required>
+                        <option value="">Selecciona</option>
+                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                        <option value="Miraflores">Miraflores</option>
+                        <option value="San Juan">San Juan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddressLine1">Calle</label>
+                    <input type="text" id="deliveryAddressLine1" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryNumber">Número</label>
+                    <input type="text" id="deliveryNumber" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAdditionalInfo">Información adicional (ej: apto. 201)</label>
+                    <input type="text" id="deliveryAdditionalInfo" placeholder="Opcional">
+                </div>
+                <div class="form-group">
+                    <label for="deliveryReference">Referencia</label>
+                    <input type="text" id="deliveryReference" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryRecipient">Destinatario</label>
+                    <input type="text" id="deliveryRecipient" placeholder="" required>
+                </div>
+            </div>
+
+            <div id="pickupDetails" class="shipping-details-section">
+                <div class="pickup-location-section">
+                    <h3>Ingresa tu ubicación para seleccionar el punto de recogida más cercano</h3>
+                    <p>Selecciona una de las siguientes opciones</p>
+                    <i class="fas fa-map-marked-alt map-icon"></i>
+                    <button class="btn btn-primary">Usar mi ubicación actual</button>
+                    <a href="#" class="manual-search-link">Buscar una dirección manualmente</a>
+                </div>
+                <!-- Eliminado el select de tienda de recogida para coincidir con la imagen -->
+            </div>
+
+            <div class="continue-btn-container">
+                <button class="btn btn-primary" id="continueShippingBtn">CONTINUAR AL PAGO</button>
+            </div>
+        </section>
+
+        <!-- Paso 3: Pago -->
+        <section id="paymentStep" class="checkout-step-content">
+            <h2 class="section-title">Paso 3: Pago</h2>
+            <div class="payment-methods">
+                <button class="payment-method-btn selected" data-payment-method="credit-card" id="creditCardBtn">
+                    <i class="fas fa-credit-card"></i> Tarjeta de Crédito y Débito
+                </button>
+                <button class="payment-method-btn" data-payment-method="google-pay" id="googlePayBtn">
+                    <img src="https://img.icons8.com/color/48/000000/google-pay.png" alt="Google Pay"> Google Pay
+                </button>
+                <button class="payment-method-btn" data-payment-method="pago-efectivo" id="pagoEfectivoBtn">
+                    <i class="fas fa-money-bill-wave"></i> Pago Efectivo
+                </button>
+                <button class="payment-method-btn" data-payment-method="yape" id="yapeBtn">
+                    <img src="https://placehold.co/24x24/000000/ffffff?text=Y" alt="Yape Logo"> Yape
+                </button>
+            </div>
+
+            <div id="creditCardForm" class="payment-form-section active">
+                <h3>Detalles de Tarjeta</h3>
+                <div class="form-group">
+                    <label for="cardNumber">Número de Tarjeta</label>
+                    <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required pattern="[0-9]{13,16}">
+                    <div class="card-icons">
+                        <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
+                        <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard">
+                        <img src="https://img.icons8.com/color/48/000000/amex.png" alt="American Express">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cardName">Nombre y Apellido como figura en la tarjeta</label>
+                    <input type="text" id="cardName" placeholder="Nombre Apellido" required>
+                </div>
+                <div class="expiry-cvv-group">
+                    <div class="form-group">
+                        <label for="expiryMonth">Fecha de Vencimiento</label>
+                        <div style="display: flex; gap: 5px;">
+                            <select id="expiryMonth" required>
+                                <option value="">MM</option>
+                                <script>
+                                    for (let i = 1; i <= 12; i++) {
+                                        document.write(`<option value="${i < 10 ? '0' + i : i}">${i < 10 ? '0' + i : i}</option>`);
+                                    }
+                                </script>
+                            </select>
+                            <select id="expiryYear" required>
+                                <option value="">AA</option>
+                                <script>
+                                    const currentYear = new Date().getFullYear();
+                                    for (let i = 0; i < 10; i++) {
+                                        document.write(`<option value="${currentYear + i}">${(currentYear + i).toString().slice(-2)}</option>`);
+                                    }
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">Código de Seguridad</label>
+                        <input type="text" id="cvv" placeholder="CVV" required pattern="[0-9]{3,4}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="billingAddress">Dirección de facturación</label>
+                    <input type="text" id="billingAddress" placeholder="Calle *" required>
+                </div>
+                <div class="form-group">
+                    <label for="billingNumber">Número *</label>
+                    <input type="text" id="billingNumber" placeholder="Número" required>
+                </div>
+                <div class="form-group">
+                    <label for="billingFloor">Piso o Departamento (ej: 2A) (Opcional)</label>
+                    <input type="text" id="billingFloor" placeholder="Piso / Dpto.">
+                </div>
+                <div class="form-group">
+                    <label for="billingDepartment">Departamento *</label>
+                    <select id="billingDepartment" required>
+                        <option value="">Selecciona</option>
+                        <option value="Lima">Lima</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="billingProvince">Provincia *</label>
+                    <select id="billingProvince" required>
+                        <option value="">Selecciona</option>
+                        <option value="Lima">Lima</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="billingDistrict">Distrito *</label>
+                    <select id="billingDistrict" required>
+                        <option value="">Selecciona</option>
+                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="googlePayInfo" class="payment-form-section">
+                <h3>Pagar con Google Pay</h3>
+                <p>Serás redirigido a la plataforma de Google Pay para completar tu pago de forma segura.</p>
+                <button class="btn btn-primary" style="margin-top: 20px;">Continuar con Google Pay</button>
+            </div>
+
+            <div id="pagoEfectivoInfo" class="payment-form-section">
+                <h3>Pagar con Pago Efectivo</h3>
+                <p>Generaremos un código CIP para que puedas pagar en agentes o bancos autorizados.</p>
+                <button class="btn btn-primary" style="margin-top: 20px;">Generar Código CIP</button>
+            </div>
+
+            <div id="yapeInfo" class="payment-form-section">
+                <h3>Pagar con Yape</h3>
+                <p>Escanea el código QR desde tu aplicación Yape para completar la compra.</p>
+                <img src="https://placehold.co/150x150/000000/ffffff?text=QR+Yape" alt="Código QR Yape" style="margin: 20px auto; display: block;">
+                <p style="font-size: 0.9rem; color: var(--subtle-blue);">Escanea el código con tu app Yape.</p>
+            </div>
+
+            <button class="btn btn-primary pay-now-btn" id="payNowBtn">PAGAR AHORA</button>
+        </section>
+
+        <!-- Resumen de la Compra (Sidebar en Checkout) - Este es el sidebar único y persistente -->
+        <div class="checkout-summary-sidebar" id="checkoutSummarySidebar">
+            <h3>Resumen de la Compra</h3>
+            <div class="summary-products-list">
+                <!-- Productos del resumen se cargarán aquí -->
+            </div>
+            <div class="summary-total-row">
+                <span>Subtotal</span>
+                <span id="summarySubtotal">S/ 0.00</span>
+            </div>
+            <div class="summary-total-row">
+                <span>Envío</span>
+                <span id="summaryShipping">S/ 0.00</span>
+            </div>
+            <div class="summary-total-row">
+                <span>Total</span>
+                <span id="summaryTotal">S/ 0.00</span>
+            </div>
+        </div>
+
+        <!-- Mensaje de Compra Exitosa -->
+        <section id="purchaseSuccess" class="purchase-success-message">
+            <i class="fas fa-check-circle"></i>
+            <h2>¡Compra Realizada con Éxito!</h2>
+            <p>Gracias por tu compra en Vístete. Tu pedido ha sido procesado y recibirás una confirmación por correo electrónico.</p>
+            <button class="btn btn-primary" onclick="window.location.href='index.html'">Volver al Inicio</button>
+        </section>
+
+    </main>
+
+    <!-- Footer (copiado de main.html) -->
+    <footer class="main-footer-robust">
+        <div class="footer-content-robust">
+            <div class="footer-section-robust about">
+                <h3>Vístete</h3>
+                <p>Redefiniendo el paso de la humanidad, un zapato a la vez. Innovación, calidad y estilo incomparable.</p>
+            </div>
+            <div class="footer-section-robust links">
+                <h3>Acceso Rápido</h3>
+                <ul>
+                    <li><a href="index.html#destacados">Productos</a></li>
+                    <li><a href="index.html#categorias">Categorías</a></li>
+                    <li><a href="index.html#nosotros">Nuestra Misión</a></li>
+                    <li><a href="index.html#proximamente">Próximamente</a></li>
+                    <li><a href="index.html#novedades">Suscríbete</a></li>
+                </ul>
+            </div>
+            <div class="footer-section-robust social">
+                <h3>Conecta con Nosotros</h3>
+                <a href="#" target="_blank" aria-label="Facebook de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Icono de Facebook"></a>
+                <a href="#" target="_blank" aria-label="Instagram de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Icono de Instagram"></a>
+                <a href="#" target="_blank" aria-label="YouTube de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play--v1.png" alt="Icono de YouTube"></a>
+            </div>
+        </div>
+        <div class="footer-bottom-robust">
+            <p>&copy; 2025 Vístete. Todos los derechos reservados. Diseñado para la excelencia.</p>
+        </div>
+    </footer>
+
+    <script src="js/carrito.js"></script>
+</body>
+</html>

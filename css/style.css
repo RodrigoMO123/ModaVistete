@@ -1,0 +1,1608 @@
+/*style.css*/
+ /* Variables CSS para una paleta de colores robusta y elegante */
+        :root {
+            --dark-primary: #1a202c; /* Carbón muy oscuro */
+            --light-bg: #f7fafc;    /* Gris muy claro, casi blanco */
+            --accent-bold: #e53e3e; /* Rojo oscuro o borgoña, fuerte */
+            --text-main: #2d3748;   /* Gris oscuro para el texto */
+            --text-light: #ffffff;  /* Blanco puro */
+            --border-strong: #a0aec0; /* Gris medio para bordes */
+            --subtle-blue: #4a5568; /* Azul grisáceo para detalles */
+
+            /* Nuevas variables para los colores de fondo de Coming Soon */
+            --coming-soon-bg-1: #2b5a74; /* Dark blue-green */
+            --coming-soon-bg-2: #6d5550; /* Muted reddish-brown */
+        }
+
+        /* Reset básico y estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-bold);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-light);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        p {
+            font-family: 'Lora', serif; /* Tipo de letra para el cuerpo de texto */
+            font-size: 1.1rem;
+        }
+
+        /* Contenedor principal de secciones */
+        .section-container {
+            max-width: 1400px; /* Un poco más ancho para robustez */
+            margin: 0 auto;
+            padding: 80px 30px; /* Padding generoso */
+        }
+
+        /* Títulos de sección */
+        .section-title {
+            text-align: center;
+            font-size: 3.8rem; /* Más grande */
+            margin-bottom: 70px;
+            position: relative;
+            padding-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--dark-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 6px; /* Más grueso */
+            background-color: var(--accent-bold);
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+
+        /* Botones generales */
+        .btn {
+            display: inline-block;
+            padding: 16px 35px;
+            border-radius: 5px; /* Ligeramente más angular */
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-bold);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background-color: #c53030; /* Tono más oscuro */
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--dark-primary);
+            border: 2px solid var(--dark-primary);
+            box-shadow: none; /* Sin sombra para un look más sutil */
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        /* Header */
+        .main-header {
+            background-color: var(--dark-primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px; /* Slightly reduced gap to accommodate new items */
+            align-items: center; /* Align items vertically */
+        }
+
+        .nav-menu-link {
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%; /* Centrado */
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-bold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu-link:hover::after {
+            width: 100%;
+        }
+
+        /* Estilos específicos para iconos en la barra de navegación */
+        .nav-menu-item.icon-item .nav-menu-link {
+            padding: 5px; /* Adjust padding for icon links */
+            font-size: 1.5rem; /* Make icons slightly larger */
+        }
+
+        .nav-menu-item.icon-item .nav-menu-link::after {
+            content: none; /* Remove underline for icon links */
+        }
+
+        .nav-menu-item.icon-item .nav-menu-link:hover {
+            color: var(--accent-bold); /* Change color on hover */
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger {
+            display: block;
+            width: 30px;
+            height: 4px; /* Más grueso */
+            background-color: var(--text-light);
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 4px;
+            background-color: var(--text-light);
+            position: absolute;
+            transition: transform 0.3s ease, top 0.3s ease, background-color 0.3s ease; /* Añadido background-color a la transición */
+        }
+
+        .hamburger::before {
+            top: -10px;
+        }
+
+        .hamburger::after {
+            top: 10px;
+        }
+
+        /* Estilos para el menú de hamburguesa activo (se convierte en una 'X') */
+        .nav-toggle.active .hamburger {
+            background-color: transparent; /* Oculta la barra central */
+        }
+
+        .nav-toggle.active .hamburger::before {
+            transform: translateY(10px) rotate(45deg); /* Gira y mueve la barra superior */
+            background-color: var(--accent-bold); /* Cambia de color para visibilidad */
+        }
+
+        .nav-toggle.active .hamburger::after {
+            transform: translateY(-10px) rotate(-45deg); /* Gira y mueve la barra inferior */
+            background-color: var(--accent-bold); /* Cambia de color para visibilidad */
+        }
+
+        /* Hero Carousel Section */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 700px; /* Altura fija para el carrusel */
+            overflow: hidden;
+            background-color: var(--dark-primary); /* Fondo de fallback */
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center center;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Overlay oscuro */
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            padding: 0 30px;
+        }
+
+        .carousel-content h1 {
+            font-size: 5.5rem;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            color: var(--text-light);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .carousel-content p {
+            font-size: 1.8rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Navegación del Carrusel */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: var(--text-light);
+            border: none;
+            padding: 15px;
+            font-size: 2rem; /* Tamaño para que el icono se vea bien */
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            display: flex; /* Para centrar el icono */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-arrow:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .carousel-arrow-left {
+            left: 20px;
+        }
+
+        .carousel-arrow-right {
+            right: 20px;
+        }
+
+        /* Sección "Sobre Nosotros" - Distribución Asimétrica */
+        .about-section-robust {
+            background-color: var(--text-light);
+            padding: 100px 30px;
+        }
+
+        .about-content-robust {
+            display: flex;
+            align-items: center;
+            gap: 60px; /* Más espacio */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            flex: 1; /* Ocupa la mitad */
+            min-width: 450px; /* Asegura un tamaño mínimo */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px; /* Altura fija para impacto */
+            object-fit: cover;
+        }
+
+        .about-text {
+            flex: 1; /* Ocupa la otra mitad */
+            padding-right: 20px; /* Espacio con el borde derecho */
+            animation: slideInRight 1.2s ease-out;
+        }
+
+        .about-text h2 {
+            font-size: 3.2rem;
+            text-align: left;
+            margin-bottom: 30px;
+            color: var(--dark-primary);
+        }
+
+        .about-text h2::after {
+            margin-left: 0;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            color: var(--text-main);
+            font-size: 1.15rem;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+
+        /* Sección de Productos Destacados - Carrusel Horizontal */
+        .featured-products-section {
+            background-color: var(--light-bg);
+            padding: 100px 30px;
+            position: relative; /* Para las flechas del carrusel */
+        }
+
+        .products-carousel-container {
+            position: relative;
+            max-width: 1200px; /* Un poco más estrecho para el carrusel de productos */
+            margin: 0 auto;
+            overflow: hidden; /* Oculta los productos que están fuera de vista */
+            padding: 20px 70px; /* Increased horizontal padding to make space for arrows */
+        }
+
+        .products-carousel-track {
+            display: flex;
+            gap: 40px; /* Espacio entre los productos */
+            transition: transform 0.5s ease-in-out;
+            padding-bottom: 20px; /* Espacio para sombras */
+        }
+
+        .product-card-carousel {
+            flex: 0 0 350px; /* Ancho fijo para cada tarjeta en el carrusel */
+            background-color: var(--text-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-card-carousel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .product-card-carousel-img-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .product-card-carousel-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card-carousel:hover img {
+            transform: scale(1.05); /* Zoom sutil en la imagen */
+        }
+
+        .product-price-tag {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .product-actions-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay oscuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 3;
+        }
+
+        .product-card-carousel:hover .product-actions-overlay {
+            opacity: 1;
+        }
+
+        .action-icon-btn {
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+        }
+
+        .action-icon-btn:hover {
+            background-color: var(--accent-bold);
+            border-color: var(--accent-bold);
+            transform: scale(1.1);
+        }
+
+        .product-card-carousel-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-card-carousel-info h3 {
+            font-size: 1.8rem;
+            color: var(--dark-primary);
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-card-carousel-info p {
+            font-size: 1rem;
+            color: var(--text-main);
+            height: 3.2em; /* 2 líneas */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2; 
+            -webkit-box-orient: vertical;
+        }
+
+        /* Flechas de Navegación del Carrusel de Productos */
+        .products-carousel-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            border: 2px solid var(--text-light); /* Added border for better visibility */
+            border-radius: 50%;
+            width: 60px; /* Increased size */
+            height: 60px; /* Increased size */
+            font-size: 2.2rem; /* Larger icon */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 5; /* Por encima de las tarjetas, pero debajo del modal */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .products-carousel-nav-arrow:hover {
+            background-color: var(--accent-bold);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .products-carousel-nav-left {
+            left: 10px; /* Position further inside the container, adjusted for padding */
+        }
+
+        .products-carousel-nav-right {
+            right: 10px; /* Position further inside the container, adjusted for padding */
+        }
+
+        /* Sección de Categorías Draggable (anteriormente Galería de Colecciones) */
+        .categories-draggable-section {
+            background-color: var(--light-bg);
+            padding: 100px 0; /* Padding horizontal manejado por el contenido del carrusel */
+            overflow: hidden; /* Asegura que el track no desborde */
+        }
+
+        .categories-carousel-container {
+            width: 100%;
+            overflow: hidden; /* Esconde lo que está fuera de vista */
+            cursor: grab; /* Cursor para indicar que es arrastrable */
+            white-space: nowrap; /* Evita que las tarjetas se envuelvan */
+            padding: 20px 0; /* Espacio para sombras */
+        }
+
+        .categories-carousel-container.grabbing {
+            cursor: grabbing;
+        }
+
+        .categories-carousel-track {
+            display: inline-flex; /* Usar inline-flex para el desplazamiento horizontal */
+            gap: 20px; /* Espacio entre las tarjetas de categoría */
+            padding: 0 30px; /* Padding a los costados para ver parcialmente las siguientes/anteriores */
+            transition: transform 0.3s ease-out; /* Transición para el auto-scroll */
+            touch-action: pan-y; /* Permite desplazamiento vertical normal en móviles */
+        }
+
+        .category-card-draggable {
+            flex-shrink: 0; /* Evita que las tarjetas se encojan */
+            width: 400px; /* Ancho fijo para las tarjetas de categoría */
+            height: 300px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card-draggable img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9); /* Ligeramente oscurecida */
+            transition: filter 0.3s ease;
+        }
+
+        .category-card-draggable:hover img {
+            filter: brightness(0.7); /* Más oscura al pasar el ratón */
+        }
+
+        .category-title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-light);
+            font-size: 3rem; /* Título prominente */
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 1;
+            pointer-events: none; /* Permite hacer clic en la tarjeta */
+        }
+        
+        /* Sección de llamada a la acción (Newsletter) - Diseño de bloque destacado */
+        .cta-section-distinct {
+            background-color: var(--accent-bold); /* Color de acento fuerte */
+            color: var(--text-light);
+            text-align: center;
+            padding: 80px 30px;
+            margin-top: 80px; /* Margen superior para separarlo */
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2); /* Sombra hacia arriba */
+            border-top: 5px solid var(--dark-primary); /* Borde superior fuerte */
+        }
+
+        .cta-section-distinct h2 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .cta-section-distinct h2::after {
+            background-color: var(--text-light);
+        }
+
+        .cta-section-distinct p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-form {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-form input[type="email"] {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255,255,255,0.9);
+            color: var(--dark-primary);
+            transition: all 0.3s ease;
+        }
+
+        .cta-form input[type="email"]::placeholder {
+            color: var(--subtle-blue);
+        }
+
+        .cta-form input[type="email"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.5);
+        }
+
+        .cta-form .btn-primary {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            border: 2px solid var(--text-light); /* Borde claro para contraste */
+            min-width: 200px;
+        }
+
+        .cta-form .btn-primary:hover {
+            background-color: var(--subtle-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        /* Pie de Página - Robustez y Contacto */
+        .main-footer-robust {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            padding: 70px 30px 40px;
+        }
+
+        .footer-content-robust {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 40px;
+        }
+
+        .footer-section-robust h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section-robust p, .footer-section-robust ul li a {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-section-robust ul {
+            padding: 0;
+        }
+
+        .footer-section-robust ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section-robust ul li a {
+            color: var(--text-light);
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .footer-section-robust ul li a:hover {
+            opacity: 1;
+            color: var(--accent-bold);
+        }
+
+        .footer-section-robust.social a {
+            display: inline-block;
+            margin-right: 25px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-section-robust.social a:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        .footer-section-robust.social img {
+            width: 40px; /* Iconos más grandes */
+            height: 40px;
+            filter: invert(100%);
+        }
+
+        .footer-bottom-robust {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 0.95rem;
+            opacity: 0.6;
+        }
+
+
+        /* --- Media Queries para Responsive Design --- */
+
+        /* Tabletas y pantallas medianas (1024px y menos) */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 3rem;
+                margin-bottom: 60px;
+            }
+
+            .hero-carousel {
+                height: 600px;
+            }
+
+            .carousel-content h1 {
+                font-size: 4.5rem;
+            }
+
+            .carousel-content p {
+                font-size: 1.5rem;
+            }
+
+            .about-content-robust {
+                flex-direction: column; /* Apilar en tabletas */
+                text-align: center;
+            }
+
+            .about-image {
+                min-width: unset;
+                width: 80%; /* Más estrecho en tabletas */
+                height: 400px;
+            }
+
+            .about-text {
+                padding-right: 0;
+                padding-top: 40px; /* Espacio entre imagen y texto */
+            }
+            .about-text h2 {
+                text-align: center;
+            }
+            .about-text h2::after {
+                margin: 20px auto 0;
+            }
+
+            .product-highlight-grid,
+            .gallery-grid,
+            .footer-content-robust {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+            }
+
+            .cta-section-distinct h2 {
+                font-size: 2.8rem;
+            }
+
+            .cta-section-distinct p {
+                font-size: 1.2rem;
+            }
+
+            .cta-form input[type="email"],
+            .cta-form .btn-primary {
+                max-width: 90%;
+            }
+
+            .products-carousel-nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+                margin: 0; /* Remove previous negative margins if they were here */
+            }
+            .products-carousel-nav-left {
+                left: 0px;
+            }
+            .products-carousel-nav-right {
+                right: 0px;
+            }
+            .products-carousel-container {
+                padding: 20px 60px; /* Adjust padding for smaller screens */
+            }
+
+            /* Coming Soon Responsive */
+            .coming-soon-grid {
+                flex-direction: column; /* Stack columns on tablet */
+                gap: 20px; /* Gap between stacked cards */
+            }
+            .coming-soon-card {
+                max-width: 500px; /* Limit width when stacked */
+                width: 95%; /* Take most of width */
+                margin: 0 auto; /* Center when stacked */
+                border-radius: 10px !important; /* All corners rounded when stacked */
+                height: 300px; /* Altura más razonable para tabletas */
+            }
+            .coming-soon-text-overlay h3 {
+                font-size: 2.5rem;
+            }
+            .coming-soon-text-overlay p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Teléfonos móviles (768px y menos) */
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 1rem 0;
+            }
+            .main-nav {
+                padding: 0 20px;
+            }
+            .logo {
+                font-size: 2rem;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 75px; /* Ajustar */
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-primary);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+                padding: 30px 0;
+                transform: translateX(-100%);
+                transition: transform 0.4s ease-in-out;
+                z-index: 998;
+                gap: 15px; /* Adjust gap for stacked mobile menu */
+            }
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            .nav-menu-item {
+                text-align: center;
+                margin: 15px 0;
+            }
+            .nav-menu-link {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+            .nav-menu-item.icon-item .nav-menu-link {
+                font-size: 1.8rem; /* Make icons larger in mobile menu */
+            }
+
+
+            .hero-carousel {
+                height: 550px;
+            }
+            .carousel-content h1 {
+                font-size: 3.2rem;
+            }
+            .carousel-content p {
+                font-size: 1.2rem;
+                margin-bottom: 40px;
+            }
+            .btn {
+                padding: 14px 30px;
+                font-size: 1.05rem;
+            }
+
+            .section-container {
+                padding: 60px 20px;
+            }
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 50px;
+            }
+            .section-title::after {
+                width: 80px;
+                height: 4px;
+            }
+
+            .about-image {
+                width: 95%;
+                height: 300px;
+            }
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .products-carousel-container {
+                padding: 0; /* No padding horizontal en móviles para el carrusel de productos */
+            }
+            .products-carousel-track {
+                gap: 20px; /* Menos espacio entre productos en móvil */
+            }
+            .product-card-carousel {
+                flex: 0 0 280px; /* Ancho más pequeño para móviles */
+            }
+            .product-card-carousel-img-container {
+                height: 280px;
+            }
+            .products-carousel-nav-arrow {
+                display: none; /* Ocultar flechas de carrusel de productos en móviles si no hay espacio */
+            }
+
+
+            .categories-carousel-track {
+                padding: 0 15px; /* Ajustar padding en móviles */
+                gap: 15px;
+            }
+            .category-card-draggable {
+                width: 300px; /* Ancho más pequeño para móviles */
+                height: 220px;
+            }
+            .category-title-overlay {
+                font-size: 2rem;
+            }
+
+
+            .cta-section-distinct {
+                padding: 60px 20px;
+            }
+            .cta-section-distinct h2 {
+                font-size: 2.2rem;
+            }
+            .cta-section-distinct p {
+                font-size: 1.1rem;
+            }
+            .cta-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .cta-form input[type="email"],
+            .cta-form .btn-primary {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .footer-content-robust {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            .footer-section-robust h3 {
+                margin-top: 25px;
+                font-size: 1.6rem;
+            }
+            .footer-section-robust ul {
+                padding: 0;
+            }
+            .footer-section-robust.social a {
+                margin: 0 10px;
+            }
+            /* Coming Soon Responsive for 768px */
+            .coming-soon-card {
+                height: 220px; /* Altura para móviles */
+            }
+            .coming-soon-text-overlay h3 {
+                font-size: 2rem;
+            }
+            .coming-soon-text-overlay p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .coming-soon-card {
+                height: 180px; /* Aún más pequeña para pantallas muy estrechas */
+            }
+            .coming-soon-text-overlay h3 {
+                font-size: 1.6rem;
+            }
+            .coming-soon-text-overlay p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Estilos para el cuadro de mensaje personalizado (reemplazo de alert) */
+        .custom-message-box-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            justify-content: center;
+            align-items: center;
+            z-index: 3000; /* Asegura que esté por encima de todos los modales */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .custom-message-box-overlay.show {
+            opacity: 1;
+            display: flex;
+        }
+
+        .custom-message-box-content {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .custom-message-box-overlay.show .custom-message-box-content {
+            transform: translateY(0);
+        }
+
+        .custom-message-box-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .custom-message-box-content .btn-primary {
+            padding: 10px 25px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Estilos del Modal Pop-up */
+        .modal-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            justify-content: center;
+            align-items: center;
+            z-index: 2000; /* Asegura que esté por encima de todo */
+            opacity: 0; /* Opacidad inicial para la animación */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            max-width: 900px; /* Ancho máximo para el modal */
+            width: 90%;
+            overflow: hidden;
+            transform: translateY(-50px); /* Para la animación de entrada */
+            transition: transform 0.3s ease-in-out;
+            position: relative; /* Para el botón de cerrar */
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--accent-bold);
+            transform: rotate(90deg);
+        }
+
+        .modal-image {
+            flex: 1;
+            background: url(/src/img/webp/zapato12.webp) no-repeat center center/cover;
+            min-height: 400px; /* Altura mínima para la imagen en el modal */
+        }
+        @media (max-width: 768px) {
+            .modal-image {
+                display: none; /* Ocultar imagen en móviles para ahorrar espacio */
+            }
+        }
+
+
+        .modal-form-container {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .modal-form-container h3 {
+            font-size: 2.5rem;
+            color: var(--dark-primary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-form-container p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .modal-newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-newsletter-form input[type="email"] {
+            padding: 16px 20px;
+            border: 2px solid var(--border-strong);
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-newsletter-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--accent-bold);
+        }
+
+        .modal-newsletter-form .btn-primary {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            background-color: var(--accent-bold);
+            color: var(--text-light);
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .modal-newsletter-form .btn-primary:hover {
+            background-color: #c53030;
+            transform: translateY(-2px);
+        }
+
+        .modal-checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .modal-checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-bold); /* Color del checkbox */
+        }
+
+        /* Responsive para el Modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column;
+                width: 95%;
+                max-width: 500px;
+            }
+            .modal-form-container {
+                padding: 30px 20px;
+            }
+            .modal-form-container h3 {
+                font-size: 2rem;
+            }
+            .modal-form-container p {
+                font-size: 1rem;
+            }
+            .modal-image {
+                display: none; /* Ocultar la imagen en pantallas pequeñas */
+            }
+        }
+
+        /* Estilos del Modal de Detalles del Producto */
+        .product-details-modal-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product-details-modal-overlay.active {
+            opacity: 1;
+            display: flex; /* Mostrar cuando está activo */
+        }
+
+        .product-details-modal-content {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            max-width: 1000px;
+            width: 95%;
+            overflow: hidden;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            color: var(--text-main);
+        }
+
+        .product-details-modal-overlay.active .product-details-modal-content {
+            transform: translateY(0);
+        }
+
+        .product-details-modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .product-details-modal-close-btn:hover {
+            color: var(--accent-bold);
+            transform: rotate(90deg);
+        }
+
+        .product-details-modal-image-container {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0,0,0,0.05);
+        }
+        .product-details-modal-image-container img {
+            max-width: 100%;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .product-details-modal-info {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-details-modal-info h3 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: var(--dark-primary);
+        }
+
+        .product-details-modal-info .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-bold);
+            margin-bottom: 20px;
+        }
+
+        .product-details-modal-info ul {
+            margin-bottom: 25px;
+        }
+
+        .product-details-modal-info ul li {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .product-details-modal-info .size-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .product-details-modal-info .size-option {
+            padding: 10px 15px;
+            border: 2px solid var(--border-strong);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .product-details-modal-info .size-option.selected,
+        .product-details-modal-info .size-option:hover {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            border-color: var(--dark-primary);
+        }
+
+        .product-details-modal-info .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .product-details-modal-info .quantity-control button {
+            background-color: var(--subtle-blue);
+            color: var(--text-light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .product-details-modal-info .quantity-control button:hover {
+            background-color: var(--dark-primary);
+        }
+
+        .product-details-modal-info .quantity-control input {
+            width: 60px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--border-strong);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .product-details-modal-info .add-to-cart-full-btn {
+            background-color: var(--accent-bold);
+            color: var(--text-light);
+            padding: 18px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .product-details-modal-info .add-to-cart-full-btn:hover {
+            background-color: #c53030;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive para el Modal de Detalles */
+        @media (max-width: 768px) {
+            .product-details-modal-content {
+                flex-direction: column;
+                width: 95%;
+                max-width: 600px;
+            }
+            .product-details-modal-image-container {
+                padding: 20px;
+            }
+            .product-details-modal-info {
+                padding: 30px 20px;
+                text-align: center;
+            }
+            .product-details-modal-info h3 {
+                font-size: 2.2rem;
+            }
+            .product-details-modal-info .price {
+                font-size: 2rem;
+            }
+            .product-details-modal-info .size-options {
+                justify-content: center;
+            }
+            .product-details-modal-info .quantity-control {
+                justify-content: center;
+            }
+        }
+
+        /* Sección de Próximos Diseños (Coming Soon) - NUEVA ESTRUCTURA */
+        .coming-soon-section {
+            background-color: var(--light-bg);
+            padding: 100px 30px;
+            text-align: center;
+        }
+
+        .coming-soon-grid {
+            display: flex;
+            justify-content: center;
+            align-items: stretch; /* Asegura que ambas columnas tengan la misma altura */
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Removido border-radius de la grid para controlarlo en las cards individuales */
+            overflow: hidden; /* Important for rounded corners */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .coming-soon-card {
+            flex: 1; /* Ambas columnas ocupan el mismo espacio */
+            position: relative;
+            height: 450px; /* Altura fija para las tarjetas de próximamente en pantallas grandes */
+            overflow: hidden;
+            cursor: pointer;
+            transition: background-color 0.5s ease, transform 0.3s ease; /* Transición para el color de fondo */
+            display: flex; /* Para centrar el contenido */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-soon-card.coming-soon-left {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .coming-soon-card.coming-soon-right {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        /* No hay bordes redondeados internos si las cards están pegadas, por eso solo los externos */
+        .coming-soon-card:first-child { /* Tarjeta izquierda */
+            border-right: 0; /* Elimina el borde derecho para que se "peguen" */
+        }
+        .coming-soon-card:last-child { /* Tarjeta derecha */
+            border-left: 0; /* Elimina el borde izquierdo */
+        }
+
+
+        .coming-soon-image-display {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* No transition here, as the overlay handles it */
+        }
+
+        .coming-soon-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-light);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            z-index: 2;
+            width: 100%;
+            padding: 20px;
+            pointer-events: none; /* Permite el hover en la propia tarjeta */
+        }
+
+        .coming-soon-text-overlay h3 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .coming-soon-text-overlay p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Efecto de transición de CRUZ (dos barras) */
+        .transition-cross-horizontal,
+        .transition-cross-vertical {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente */
+            opacity: 0; /* Inicialmente invisible */
+            z-index: 3; /* Encima de la imagen, debajo del texto */
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Transición ease-out */
+            border-radius: 5px; /* Bordes suaves para las barras de la cruz */
+        }
+
+        .transition-cross-horizontal {
+            width: 100%; /* Ocupa todo el ancho */
+            height: 220px; /* **Ajustado: Mucho más gruesa** */
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%) scaleY(1); /* Inicia con altura completa (no adelgazada) */
+        }
+
+        .transition-cross-vertical {
+            width: 220px; /* **Ajustado: Mucho más gruesa** */
+            height: 100%; /* Ocupa toda la altura */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(1); /* Inicia con ancho completo (no adelgazada) */
+        }
+
+        /* Animación: De afuera hacia adentro (adelgazamiento y aparecer) */
+        .coming-soon-card.transition-in .transition-cross-horizontal {
+            opacity: 1; /* Se vuelve visible */
+            transform: translateY(-50%) scaleY(0.01); /* Se adelgaza verticalmente */
+        }
+        .coming-soon-card.transition-in .transition-cross-vertical {
+            opacity: 1; /* Se vuelve visible */
+            transform: translateX(-50%) scaleX(0.01); /* Se adelgaza horizontalmente */
+        }
+
+        /* Animación: De adentro hacia afuera (expansión y desaparecer) */
+        .coming-soon-card.transition-out .transition-cross-horizontal {
+            opacity: 0; /* Desaparece */
+            transform: translateY(-50%) scaleY(1); /* Se expande verticalmente a su tamaño inicial */
+        }
+        .coming-soon-card.transition-out .transition-cross-vertical {
+            opacity: 0; /* Desaparece */
+            transform: translateX(-50%) scaleX(1); /* Se expande horizontalmente a su tamaño inicial */
+        }

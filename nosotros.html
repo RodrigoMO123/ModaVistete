@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vístete - Nuestra Historia y Misión</title>
+    <!-- Fuentes de Google: Montserrat para títulos y Lora para texto de cuerpo -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variables CSS para una paleta de colores robusta y elegante */
+        :root {
+            --dark-primary: #1a202c; /* Carbón muy oscuro */
+            --light-bg: #f7fafc;    /* Gris muy claro, casi blanco */
+            --accent-bold: #e53e3e; /* Rojo oscuro o borgoña, fuerte */
+            --text-main: #2d3748;   /* Gris oscuro para el texto */
+            --text-light: #ffffff;  /* Blanco puro */
+            --border-strong: #a0aec0; /* Gris medio para bordes */
+            --subtle-blue: #4a5568; /* Azul grisáceo para detalles */
+
+            /* Nuevas variables para los colores de fondo de Coming Soon */
+            --coming-soon-bg-1: #2b5a74; /* Dark blue-green */
+            --coming-soon-bg-2: #6d5550; /* Muted reddish-brown */
+        }
+
+        /* Reset básico y estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-bold);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dark-primary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        p {
+            font-family: 'Lora', serif; /* Tipo de letra para el cuerpo de texto */
+            font-size: 1.1rem;
+        }
+
+        /* Contenedor principal de secciones */
+        .section-container {
+            max-width: 1400px; /* Un poco más ancho para robustez */
+            margin: 0 auto;
+            padding: 80px 30px; /* Padding generoso */
+        }
+
+        /* Títulos de sección */
+        .section-title {
+            text-align: center;
+            font-size: 3.8rem; /* Más grande */
+            margin-bottom: 70px;
+            position: relative;
+            padding-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--dark-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 6px; /* Más grueso */
+            background-color: var(--accent-bold);
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+
+        /* Botones generales */
+        .btn {
+            display: inline-block;
+            padding: 16px 35px;
+            border-radius: 5px; /* Ligeramente más angular */
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-bold);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background-color: #c53030; /* Tono más oscuro */
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--dark-primary);
+            border: 2px solid var(--dark-primary);
+            box-shadow: none; /* Sin sombra para un look más sutil */
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        /* Header */
+        .main-header {
+            background-color: var(--dark-primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px; /* Slightly reduced gap to accommodate new items */
+            align-items: center; /* Align items vertically */
+        }
+
+        .nav-menu-link {
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%; /* Centrado */
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-bold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu-link:hover::after {
+            width: 100%;
+        }
+
+        /* Estilos específicos para iconos en la barra de navegación */
+        .nav-menu-item.icon-item .nav-menu-link {
+            padding: 5px; /* Adjust padding for icon links */
+            font-size: 1.5rem; /* Make icons slightly larger */
+        }
+
+        .nav-menu-item.icon-item .nav-menu-link::after {
+            content: none; /* Remove underline for icon links */
+        }
+
+        .nav-menu-item.icon-item .nav-menu-link:hover {
+            color: var(--accent-bold); /* Change color on hover */
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger {
+            display: block;
+            width: 30px;
+            height: 4px; /* Más grueso */
+            background-color: var(--text-light);
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 4px;
+            background-color: var(--text-light);
+            position: absolute;
+            transition: transform 0.3s ease, top 0.3s ease, background-color 0.3s ease; /* Añadido background-color a la transición */
+        }
+
+        .hamburger::before {
+            top: -10px;
+        }
+
+        .hamburger::after {
+            top: 10px;
+        }
+
+        /* Estilos para el menú de hamburguesa activo (se convierte en una 'X') */
+        .nav-toggle.active .hamburger {
+            background-color: transparent; /* Oculta la barra central */
+        }
+
+        .nav-toggle.active .hamburger::before {
+            transform: translateY(10px) rotate(45deg); /* Gira y mueve la barra superior */
+            background-color: var(--accent-bold); /* Cambia de color para visibilidad */
+        }
+
+        .nav-toggle.active .hamburger::after {
+            transform: translateY(-10px) rotate(-45deg); /* Gira y mueve la barra inferior */
+            background-color: var(--accent-bold); /* Cambia de color para visibilidad */
+        }
+
+        /* Hero Carousel Section (Reutilizado como Banner de Página) */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Altura ajustada para banners de página */
+            overflow: hidden;
+            background-size: cover;
+            background-position: center center;
+            color: var(--text-light);
+            text-align: center;
+            display: flex; /* Para centrar el contenido */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-carousel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay oscuro */
+            z-index: 0; /* Asegura que esté detrás del contenido */
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 1; /* Asegura que el contenido esté por encima del overlay */
+            max-width: 1000px;
+            padding: 0 30px;
+        }
+
+        .carousel-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--text-light);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .carousel-content p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Sección de Contenido "Nosotros" */
+        .about-us-content {
+            display: flex;
+            flex-direction: column;
+            gap: 60px; /* Espacio entre secciones internas */
+        }
+
+        .about-us-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 50px; /* Margen inferior para separarlo del resto */
+        }
+
+        .about-us-intro h2 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .about-us-intro h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background-color: var(--accent-bold);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        .about-us-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .about-us-section:nth-child(even) { /* Para alternar la disposición de imagen/texto */
+            flex-direction: row-reverse;
+        }
+
+        .about-us-section-image {
+            flex: 1;
+            min-width: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .about-us-section-image img {
+            width: 100%;
+            height: 400px; /* Altura fija para consistencia */
+            object-fit: cover;
+        }
+
+        .about-us-section-text {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .about-us-section-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-primary);
+        }
+
+        .about-us-section-text p {
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+
+        /* Pie de Página - Robustez y Contacto */
+        .main-footer-robust {
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            padding: 70px 30px 40px;
+        }
+
+        .footer-content-robust {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 40px;
+        }
+
+        .footer-section-robust h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section-robust p, .footer-section-robust ul li a {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-section-robust ul {
+            padding: 0;
+        }
+
+        .footer-section-robust ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section-robust ul li a {
+            color: var(--text-light);
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .footer-section-robust ul li a:hover {
+            opacity: 1;
+            color: var(--accent-bold);
+        }
+
+        .footer-section-robust.social a {
+            display: inline-block;
+            margin-right: 25px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-section-robust.social a:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        .footer-section-robust.social img {
+            width: 40px; /* Iconos más grandes */
+            height: 40px;
+            filter: invert(100%);
+        }
+
+        .footer-bottom-robust {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 0.95rem;
+            opacity: 0.6;
+        }
+
+        /* Estilos para el cuadro de mensaje personalizado (reemplazo de alert) */
+        .custom-message-box-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            justify-content: center;
+            align-items: center;
+            z-index: 3000; /* Asegura que esté por encima de todos los modales */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .custom-message-box-overlay.show {
+            opacity: 1;
+            display: flex;
+        }
+
+        .custom-message-box-content {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .custom-message-box-overlay.show .custom-message-box-content {
+            transform: translateY(0);
+        }
+
+        .custom-message-box-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .custom-message-box-content .btn-primary {
+            padding: 10px 25px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+
+        /* Media Queries para Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-carousel {
+                height: 400px; 
+            }
+            .carousel-content h1 {
+                font-size: 3.5rem;
+            }
+            .carousel-content p {
+                font-size: 1.2rem;
+            }
+
+            .about-us-intro h2 {
+                font-size: 2.8rem;
+            }
+
+            .about-us-section {
+                flex-direction: column; /* Apilar en tabletas */
+                text-align: center;
+            }
+            .about-us-section:nth-child(even) { /* Para resetear la dirección si estaba invertida */
+                flex-direction: column;
+            }
+
+            .about-us-section-image {
+                min-width: unset;
+                width: 80%; /* Más estrecho en tabletas */
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .about-us-section-text {
+                padding: 0;
+                padding-top: 30px; /* Espacio entre imagen y texto */
+            }
+            .about-us-section-text h3 {
+                text-align: center;
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 1rem 0;
+            }
+            .main-nav {
+                padding: 0 20px;
+            }
+            .logo {
+                font-size: 2rem;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 75px; /* Ajustar */
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-primary);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+                padding: 30px 0;
+                transform: translateX(-100%);
+                transition: transform 0.4s ease-in-out;
+                z-index: 998;
+                gap: 15px; /* Adjust gap for stacked mobile menu */
+            }
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            .nav-menu-item {
+                text-align: center;
+                margin: 15px 0;
+            }
+            .nav-menu-link {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+            .nav-menu-item.icon-item .nav-menu-link {
+                font-size: 1.8rem; /* Make icons larger in mobile menu */
+            }
+
+            .hero-carousel {
+                height: 300px; 
+            }
+            .carousel-content h1 {
+                font-size: 2.5rem;
+            }
+            .carousel-content p {
+                font-size: 1rem;
+            }
+
+            .section-container {
+                padding: 40px 20px;
+            }
+
+            .about-us-intro h2 {
+                font-size: 2.2rem;
+                margin-bottom: 20px;
+            }
+            .about-us-intro h2::after {
+                width: 80px;
+                height: 4px;
+            }
+            .about-us-intro p {
+                font-size: 1rem;
+            }
+
+            .about-us-section {
+                gap: 30px;
+            }
+            .about-us-section-image {
+                width: 95%;
+                height: 250px;
+            }
+            .about-us-section-text {
+                padding-top: 20px;
+            }
+            .about-us-section-text h3 {
+                font-size: 1.8rem;
+            }
+            .about-us-section-text p {
+                font-size: 0.95rem;
+            }
+
+            .footer-content-robust {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            .footer-section-robust h3 {
+                margin-top: 25px;
+                font-size: 1.6rem;
+            }
+            .footer-section-robust ul {
+                padding: 0;
+            }
+            .footer-section-robust.social a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Message Box (reemplazo de alert) -->
+    <div id="customMessageBox" class="custom-message-box-overlay">
+        <div class="custom-message-box-content">
+            <p id="messageBoxText"></p>
+            <button id="messageBoxCloseBtn" class="btn btn-primary">Aceptar</button>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">Vístete</a>
+            <button class="nav-toggle" aria-label="abrir navegación">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-menu-item"><a href="index.html" class="nav-menu-link">Inicio</a></li>
+                <li class="nav-menu-item"><a href="mujeres.html" class="nav-menu-link">Mujeres</a></li>
+                <li class="nav-menu-item"><a href="hombres.html" class="nav-menu-link">Hombres</a></li>
+                <li class="nav-menu-item"><a href="ninos.html" class="nav-menu-link">Niños</a></li>
+                <li class="nav-menu-item"><a href="nosotros.html" class="nav-menu-link">Nosotros</a></li>
+                <li class="nav-menu-item"><a href="contactenos.html" class="nav-menu-link">Contáctenos</a></li>
+                <!-- New icons added here -->
+                <li class="nav-menu-item icon-item"><a href="login.html" class="nav-menu-link" aria-label="Iniciar sesión"><i class="fas fa-user"></i></a></li>
+                <li class="nav-menu-item icon-item"><a href="carrito.html" class="nav-menu-link" aria-label="Ver carrito"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Banner de Nosotros -->
+        <section class="hero-carousel" style="background-image: url('https://placehold.co/1920x500/1a202c/ffffff?text=Nuestra+Historia');">
+            <div class="carousel-content">
+                <h1>NUESTRA HISTORIA</h1>
+                <p>Pasión, Innovación y el Compromiso de Vístete.</p>
+            </div>
+        </section>
+
+        <section class="section-container about-us-content">
+            <div class="about-us-intro">
+                <h2>¿Quiénes Somos en Vístete?</h2>
+                <p>En Vístete, creemos que el calzado es más que un simple accesorio; es una extensión de tu personalidad, una herramienta para la aventura y un pilar de tu comodidad diaria. Desde nuestra fundación, nos hemos dedicado a crear piezas que no solo te vistan, sino que también cuenten tu historia.</p>
+            </div>
+
+            <div class="about-us-section">
+                <div class="about-us-section-image">
+                    <img src="img/webp/zapato9.webp" alt="Mano de artesano trabajando en un zapato">
+                </div>
+                <div class="about-us-section-text">
+                    <h3>Nuestra Historia: Raíces en la Tradición</h3>
+                    <p>Fundada en 20XX, Vístete nació de la visión de fusionar la artesanía zapatera clásica con las demandas del estilo de vida moderno. Comenzamos como un pequeño taller, donde cada zapato era meticulosamente elaborado a mano, prestando atención a cada curva, cada costura. Con los años, hemos crecido, pero nuestra dedicación a la calidad y al detalle artesanal permanece inquebrantable.</p>
+                    <p>Hemos evolucionado, incorporando tecnologías innovadoras y materiales sostenibles, pero siempre con el respeto por las técnicas que nos vieron nacer. Esta combinación nos permite ofrecer calzado que es hermoso, duradero y responsable.</p>
+                </div>
+            </div>
+
+            <div class="about-us-section">
+                <div class="about-us-section-image">
+                    <img src="img/webp/zapato10.webp" alt="Tecnología de diseño de calzado 3D">
+                </div>
+                <div class="about-us-section-text">
+                    <h3>Nuestra Misión: Pasos Hacia el Futuro</h3>
+                    <p>Nuestra misión es clara: empoderar a cada individuo para que camine con confianza y estilo, sin comprometer la comodidad. Nos esforzamos por ser líderes en la industria del calzado, no solo a través de diseños vanguardistas, sino también mediante un compromiso inquebrantable con la ética, la sostenibilidad y la satisfacción del cliente.</p>
+                    <p>Innovamos constantemente para ofrecer soluciones de calzado que se adapten a las diversas necesidades y estilos de vida de nuestros clientes. Desde el ritmo acelerado de la ciudad hasta la serenidad de la naturaleza, Vístete está contigo en cada aventura.</p>
+                </div>
+            </div>
+
+            <div class="about-us-section">
+                <div class="about-us-section-image">
+                    <img src="img/webp/zapato11.webp" alt="Personas de diversas edades y culturas caminando juntas">
+                </div>
+                <div class="about-us-section-text">
+                    <h3>Nuestros Valores: Pilar de Nuestra Identidad</h3>
+                    <ul>
+                        <li><strong>Calidad y Durabilidad:</strong> Comprometidos con la excelencia en cada material y cada puntada.</li>
+                        <li><strong>Innovación Constante:</strong> Siempre buscando nuevas tecnologías y diseños para mejorar tu experiencia.</li>
+                        <li><strong>Sostenibilidad:</strong> Conscientes de nuestro impacto, elegimos procesos y materiales que respetan el planeta.</li>
+                        <li><strong>Integridad:</strong> Transparencia y honestidad en todas nuestras operaciones y relaciones.</li>
+                        <li><strong>Pasión por el Diseño:</strong> Creemos que el estilo no debe sacrificar la comodidad ni la función.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-us-section">
+                <div class="about-us-section-image">
+                    <img src="img/webp/zapato12.webp" alt="Comunidad de personas riendo y compartiendo">
+                </div>
+                <div class="about-us-section-text">
+                    <h3>Nuestra Visión: Un Mundo Mejor, Un Paso a la Vez</h3>
+                    <p>Visualizamos un futuro donde el calzado de alta calidad sea accesible para todos, y donde la moda y la responsabilidad social vayan de la mano. Queremos inspirar a las personas a explorar el mundo con confianza, sabiendo que Vístete los apoya en cada paso de su viaje.</p>
+                    <p>Únete a nuestra comunidad y sé parte de esta historia. En Vístete, cada paso es una declaración.</p>
+                    <a href="contacto.html" class="btn btn-primary" style="margin-top: 20px;">CONTÁCTANOS</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer-robust">
+        <div class="footer-content-robust">
+            <div class="footer-section-robust about">
+                <h3>Vístete</h3>
+                <p>Redefiniendo el paso de la humanidad, un zapato a la vez. Innovación, calidad y estilo incomparable.</p>
+            </div>
+            <div class="footer-section-robust links">
+                <h3>Acceso Rápido</h3>
+                <ul>
+                    <li><a href="index.html#destacados">Productos</a></li>
+                    <li><a href="index.html#categorias">Categorías</a></li>
+                    <li><a href="nosotros.html">Nuestra Misión</a></li>
+                    <li><a href="index.html#proximamente">Próximamente</a></li>
+                    <li><a href="index.html#novedades">Suscríbete</a></li>
+                </ul>
+            </div>
+            <div class="footer-section-robust social">
+                <h3>Conecta con Nosotros</h3>
+                <a href="#" target="_blank" aria-label="Facebook de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Icono de Facebook"></a>
+                <a href="#" target="_blank" aria-label="Instagram de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Icono de Instagram"></a>
+                <a href="#" target="_blank" aria-label="YouTube de Vístete"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play--v1.png" alt="Icono de YouTube"></a>
+            </div>
+        </div>
+        <div class="footer-bottom-robust">
+            <p>&copy; 2025 Vístete. Todos los derechos reservados. Diseñado para la excelencia.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Función para mostrar un cuadro de mensaje personalizado
+            function showCustomMessageBox(message) {
+                const messageBox = document.getElementById('customMessageBox');
+                const messageBoxText = document.getElementById('messageBoxText');
+                const messageBoxCloseBtn = document.getElementById('messageBoxCloseBtn');
+
+                messageBoxText.textContent = message;
+                messageBox.classList.add('show');
+
+                const closeMessageBox = () => {
+                    messageBox.classList.remove('show');
+                    messageBoxCloseBtn.removeEventListener('click', closeMessageBox);
+                    messageBox.removeEventListener('click', handleOverlayClick);
+                };
+
+                const handleOverlayClick = (event) => {
+                    if (event.target === messageBox) {
+                        closeMessageBox();
+                    }
+                };
+
+                messageBoxCloseBtn.addEventListener('click', closeMessageBox);
+                messageBox.addEventListener('click', handleOverlayClick);
+            }
+
+            // Navegación Responsive (menú hamburguesa)
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.setAttribute(
+                        'aria-expanded',
+                        navMenu.classList.contains('active')
+                    );
+                });
+
+                // Cerrar el menú al hacer clic en un enlace (útil en móviles)
+                navMenu.querySelectorAll('.nav-menu-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                            navToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

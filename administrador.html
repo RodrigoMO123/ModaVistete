@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vístete - Panel de Administración</title>
+    <!-- Fuentes de Google Fonts y Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Estilos CSS integrados -->
+    <link rel="stylesheet" href="css/administrador.css">
+</head>
+<body>
+    <!-- Encabezado del Panel de Administración -->
+    <header class="admin-header">
+        <div class="admin-header-content">
+            <!-- Logo del panel de administración -->
+            <h1 class="admin-logo"><a href="index.html" target="_blank">Vístete Admin</a></h1>
+            <!-- Navegación superior del panel -->
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#content-management"><i class="fas fa-edit"></i> Contenido</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Ajustes</a></li>
+                    <li><a href="index.html" target="_blank"><i class="fas fa-eye"></i> Ver Sitio</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor principal del panel de administración -->
+    <main class="admin-main-container">
+        <!-- Barra lateral de navegación -->
+        <aside class="admin-sidebar">
+            <nav class="admin-sidebar-nav">
+                <ul class="admin-menu">
+                    <li class="menu-item active" data-section="banner-section"><a href="#banner-section"><i class="fas fa-images"></i> Banner Principal</a></li>
+                    <li class="menu-item" data-section="about-section"><a href="#about-section"><i class="fas fa-info-circle"></i> Sobre Nosotros</a></li>
+                    <li class="menu-item" data-section="featured-products-section"><a href="#featured-products-section"><i class="fas fa-star"></i> Productos Destacados</a></li>
+                    <li class="menu-item" data-section="categories-section"><a href="#categories-section"><i class="fas fa-tags"></i> Categorías</a></li>
+                    <li class="menu-item" data-section="coming-soon-section"><a href="#coming-soon-section"><i class="fas fa-clock"></i> Próximos Diseños</a></li>
+                    <li class="menu-item" data-section="newsletter-cta-section"><a href="#newsletter-cta-section"><i class="fas fa-envelope"></i> CTA Newsletter</a></li>
+                    <li class="menu-item" data-section="footer-section"><a href="#footer-section"><i class="fas fa-shoe-prints"></i> Pie de Página</a></li>
+                    <li class="menu-item separator"></li>
+                    <li class="menu-item" data-section="general-settings"><a href="#general-settings"><i class="fas fa-globe"></i> Ajustes Generales</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área de contenido principal del panel -->
+        <section class="admin-content-area">
+            <h2 class="section-title">Gestión de Contenido del Sitio</h2>
+
+            <!-- Sección de Previsualización -->
+            <div class="admin-preview-section">
+                <h3>Previsualización de la Página</h3>
+                <div class="preview-iframe-container">
+                    <!-- El iframe cargará tu index.html para la previsualización -->
+                    <iframe id="livePreviewFrame" src="index.html" frameborder="0"></iframe>
+                </div>
+                <p class="preview-note">Los cambios se reflejarán aquí. Guarda los cambios para verlos reflejados en el sitio web principal.</p>
+            </div>
+
+            <!-- 1. Gestión del Banner Principal (Carrusel Hero) -->
+            <div id="banner-section" class="admin-card-section active-section">
+                <h3><i class="fas fa-images"></i> Editar Banner Principal</h3>
+                <div class="admin-card-grid">
+                    <!-- Tarjeta de edición para el Slide 1 del carrusel -->
+                    <div class="admin-card editable-card" data-slide-index="0">
+                        <div class="card-header">
+                            <h4>Slide 1</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bannerTitle0">Título Principal:</label>
+                                <input type="text" id="bannerTitle0" value="DESCUBRE LA POTENCIA EN CADA PISADA" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(1) h1" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="bannerSubtitle0">Subtítulo:</label>
+                                <textarea id="bannerSubtitle0" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(1) p">Donde la ingeniería y el diseño se fusionan para desafiar tus límites.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen de Fondo:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="banner-upload-0">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="banner-url-0">Pegar URL</button>
+                                </div>
+                                <div id="banner-upload-0" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-slide-index='0'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(1)" data-property="backgroundImage">
+                                </div>
+                                <div id="banner-url-0" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato1.jpg" data-preview-target=".admin-card[data-slide-index='0'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(1)" data-property="backgroundImage">
+                                </div>
+                                <img src="img/jpg/zapato1.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Slide 2 del carrusel -->
+                    <div class="admin-card editable-card" data-slide-index="1">
+                        <div class="card-header">
+                            <h4>Slide 2</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bannerTitle1">Título Principal:</label>
+                                <input type="text" id="bannerTitle1" value="CATEGORÍA: DEPORTIVAS" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(2) h1" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="bannerSubtitle1">Subtítulo:</label>
+                                <textarea id="bannerSubtitle1" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(2) p">Rendimiento y confort para superar tus metas. Diseñadas para el movimiento constante.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen de Fondo:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="banner-upload-1-img">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="banner-url-1-img">Pegar URL</button>
+                                </div>
+                                <div id="banner-upload-1-img" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-slide-index='1'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(2)" data-property="backgroundImage">
+                                </div>
+                                <div id="banner-url-1-img" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato2.jpg" data-preview-target=".admin-card[data-slide-index='1'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(2)" data-property="backgroundImage">
+                                </div>
+                                <img src="img/jpg/zapato2.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Slide 3 del carrusel -->
+                    <div class="admin-card editable-card" data-slide-index="2">
+                        <div class="card-header">
+                            <h4>Slide 3</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bannerTitle2">Título Principal:</label>
+                                <input type="text" id="bannerTitle2" value="CATEGORÍA: CASUALES" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(3) h1" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="bannerSubtitle2">Subtítulo:</label>
+                                <textarea id="bannerSubtitle2" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(3) p">Estilo sin esfuerzo para tu día a día. Comodidad que se adapta a tu ritmo urbano.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen de Fondo:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="banner-upload-2-img">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="banner-url-2-img">Pegar URL</button>
+                                </div>
+                                <div id="banner-upload-2-img" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-slide-index='2'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(3)" data-property="backgroundImage">
+                                </div>
+                                <div id="banner-url-2-img" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato3.jpg" data-preview-target=".admin-card[data-slide-index='2'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(3)" data-property="backgroundImage">
+                                </div>
+                                <img src="img/jpg/zapato3.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Slide 4 del carrusel -->
+                    <div class="admin-card editable-card" data-slide-index="3">
+                        <div class="card-header">
+                            <h4>Slide 4</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bannerTitle3">Título Principal:</label>
+                                <input type="text" id="bannerTitle3" value="CATEGORÍA: FORMAL" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(4) h1" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="bannerSubtitle3">Subtítulo:</label>
+                                <textarea id="bannerSubtitle3" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(4) p">Elegancia que define tu presencia. Acabados impecables para cada ocasión importante.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen de Fondo:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="banner-upload-3-img">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="banner-url-3-img">Pegar URL</button>
+                                </div>
+                                <div id="banner-upload-3-img" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-slide-index='3'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(4)" data-property="backgroundImage">
+                                </div>
+                                <div id="banner-url-3-img" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato4.jpg" data-preview-target=".admin-card[data-slide-index='3'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(4)" data-property="backgroundImage">
+                                </div>
+                                <img src="img/jpg/zapato4.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Slide 5 del carrusel -->
+                    <div class="admin-card editable-card" data-slide-index="4">
+                        <div class="card-header">
+                            <h4>Slide 5</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bannerTitle4">Título Principal:</label>
+                                <input type="text" id="bannerTitle4" value="CATEGORÍA: BOTAS" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(5) h1" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="bannerSubtitle4">Subtítulo:</label>
+                                <textarea id="bannerSubtitle4" class="editable-field" data-target-selector=".hero-carousel .carousel-slide:nth-child(5) p">Diseño robusto y protección para tus aventuras. Enfrenta cualquier terreno con confianza.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen de Fondo:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="banner-upload-4-img">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="banner-url-4-img">Pegar URL</button>
+                                </div>
+                                <div id="banner-upload-4-img" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-slide-index='4'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(5)" data-property="backgroundImage">
+                                </div>
+                                <div id="banner-url-4-img" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato5.jpg" data-preview-target=".admin-card[data-slide-index='4'] .current-image-preview" data-target-selector=".hero-carousel .carousel-slide:nth-child(5)" data-property="backgroundImage">
+                                </div>
+                                <img src="img/jpg/zapato5.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Botón para añadir un nuevo slide -->
+                    <div class="admin-card add-new-card">
+                        <button class="btn btn-add-new" data-section-type="banner-slide"><i class="fas fa-plus"></i> Añadir Nuevo Slide</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Gestión de la Sección "Sobre Nosotros" -->
+            <div id="about-section" class="admin-card-section">
+                <h3><i class="fas fa-info-circle"></i> Editar Sección "Sobre Nosotros"</h3>
+                <div class="admin-card editable-card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="aboutTitle">Título:</label>
+                            <input type="text" id="aboutTitle" value="Nuestra Historia: Forjando el Futuro del Calzado" class="editable-field" data-target-selector=".about-section-robust h2" data-property="textContent">
+                        </div>
+                        <div class="form-group">
+                            <label for="aboutText1">Párrafo 1:</label>
+                            <textarea id="aboutText1" class="editable-field" data-target-selector=".about-section-robust p:nth-of-type(1)">En Vístete, no solo creamos zapatos; diseñamos experiencias. Desde nuestros inicios, nos hemos dedicado a la búsqueda incansable de la perfección, combinando la artesanía tradicional con las innovaciones tecnológicas más vanguardistas. Cada par es una promesa de calidad, durabilidad y un estilo que redefine el estándar.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="aboutText2">Párrafo 2:</label>
+                            <textarea id="aboutText2" class="editable-field" data-target-selector=".about-section-robust p:nth-of-type(2)">Nuestra misión es empoderarte para que cada paso cuente. Ya sea que conquistes la ciudad o te aventures en lo desconocido, nuestros calzados están construidos para acompañarte, ofreciendo una comodidad inigualable y una resistencia a prueba de todo. Descubre la diferencia de un calzado que realmente está a tu altura.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Imagen:</label>
+                            <div class="image-upload-options">
+                                <button class="btn btn-sm btn-toggle-upload" data-toggle-target="about-upload">Subir Imagen</button>
+                                <button class="btn btn-sm btn-toggle-url" data-toggle-target="about-url">Pegar URL</button>
+                            </div>
+                            <div id="about-upload" class="upload-area hidden">
+                                <input type="file" class="image-upload-input" data-preview-target="#about-section .current-image-preview" data-target-selector=".about-section-robust .about-image img" data-property="src">
+                            </div>
+                            <div id="about-url" class="url-area hidden">
+                                <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato6.jpg" data-preview-target="#about-section .current-image-preview" data-target-selector=".about-section-robust .about-image img" data-property="src">
+                            </div>
+                            <img src="img/jpg/zapato6.jpg" alt="Imagen actual" class="current-image-preview">
+                        </div>
+                        <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Gestión de Productos Destacados -->
+            <div id="featured-products-section" class="admin-card-section">
+                <h3><i class="fas fa-star"></i> Editar Productos Destacados</h3>
+                <div class="admin-card-grid">
+                    <!-- Tarjeta de edición para el Producto 1 -->
+                    <div class="admin-card editable-card" data-product-id="prod001">
+                        <div class="card-header">
+                            <h4>Bota Táctica "Apex"</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productName001">Nombre:</label>
+                                <input type="text" id="productName001" value="Bota Táctica 'Apex'" class="editable-field" data-target-selector="[data-product-id='prod001'] h3" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="productDesc001">Descripción:</label>
+                                <textarea id="productDesc001" class="editable-field" data-target-selector="[data-product-id='prod001'] p">Diseñadas para terrenos extremos, máxima tracción y resistencia a la abrasión.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice001">Precio:</label>
+                                <input type="text" id="productPrice001" value="$249.99" class="editable-field" data-target-selector="[data-product-id='prod001'] .product-price-tag" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="product-upload-001">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="product-url-001">Pegar URL</button>
+                                </div>
+                                <div id="product-upload-001" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-product-id='prod001'] .current-image-preview" data-target-selector="[data-product-id='prod001'] .product-card-carousel-img-container img, [data-product-id='prod001'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <div id="product-url-001" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato7.jpg" data-preview-target=".admin-card[data-product-id='prod001'] .current-image-preview" data-target-selector="[data-product-id='prod001'] .product-card-carousel-img-container img, [data-product-id='prod001'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato7.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Producto 2 -->
+                    <div class="admin-card editable-card" data-product-id="prod002">
+                        <div class="card-header">
+                            <h4>Runner de Ciudad "Dash"</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productName002">Nombre:</label>
+                                <input type="text" id="productName002" value="Runner de Ciudad 'Dash'" class="editable-field" data-target-selector="[data-product-id='prod002'] h3" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="productDesc002">Descripción:</label>
+                                <textarea id="productDesc002" class="editable-field" data-target-selector="[data-product-id='prod002'] p">Ultraligeras y con amortiguación adaptable, ideales para conquistar el asfalto urbano.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice002">Precio:</label>
+                                <input type="text" id="productPrice002" value="$139.50" class="editable-field" data-target-selector="[data-product-id='prod002'] .product-price-tag" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="product-upload-002">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="product-url-002">Pegar URL</button>
+                                </div>
+                                <div id="product-upload-002" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-product-id='prod002'] .current-image-preview" data-target-selector="[data-product-id='prod002'] .product-card-carousel-img-container img, [data-product-id='prod002'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <div id="product-url-002" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato8.jpg" data-preview-target=".admin-card[data-product-id='prod002'] .current-image-preview" data-target-selector="[data-product-id='prod002'] .product-card-carousel-img-container img, [data-product-id='prod002'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato8.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Producto 3 -->
+                    <div class="admin-card editable-card" data-product-id="prod003">
+                        <div class="card-header">
+                            <h4>Zapatilla Casual "Forge"</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productName003">Nombre:</label>
+                                <input type="text" id="productName003" value="Zapatilla Casual 'Forge'" class="editable-field" data-target-selector="[data-product-id='prod003'] h3" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="productDesc003">Descripción:</label>
+                                <textarea id="productDesc003" class="editable-field" data-target-selector="[data-product-id='prod003'] p">Comodidad inigualable y un diseño minimalista. Versatilidad para el día a día.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice003">Precio:</label>
+                                <input type="text" id="productPrice003" value="$99.00" class="editable-field" data-target-selector="[data-product-id='prod003'] .product-price-tag" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="product-upload-003">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="product-url-003">Pegar URL</button>
+                                </div>
+                                <div id="product-upload-003" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-product-id='prod003'] .current-image-preview" data-target-selector="[data-product-id='prod003'] .product-card-carousel-img-container img, [data-product-id='prod003'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <div id="product-url-003" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato9.jpg" data-preview-target=".admin-card[data-product-id='prod003'] .current-image-preview" data-target-selector="[data-product-id='prod003'] .product-card-carousel-img-container img, [data-product-id='prod003'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato9.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Producto 4 -->
+                    <div class="admin-card editable-card" data-product-id="prod004">
+                        <div class="card-header">
+                            <h4>Botín Urbano "Vanguard"</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productName004">Nombre:</label>
+                                <input type="text" id="productName004" value="Botín Urbano 'Vanguard'" class="editable-field" data-target-selector="[data-product-id='prod004'] h3" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="productDesc004">Descripción:</label>
+                                <textarea id="productDesc004" class="editable-field" data-target-selector="[data-product-id='prod004'] p">La combinación perfecta de robustez y elegancia. Ideales para el entorno urbano.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice004">Precio:</label>
+                                <input type="text" id="productPrice004" value="$180.00" class="editable-field" data-target-selector="[data-product-id='prod004'] .product-price-tag" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="product-upload-004">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="product-url-004">Pegar URL</button>
+                                </div>
+                                <div id="product-upload-004" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-product-id='prod004'] .current-image-preview" data-target-selector="[data-product-id='prod004'] .product-card-carousel-img-container img, [data-product-id='prod004'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <div id="product-url-004" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato10.jpg" data-preview-target=".admin-card[data-product-id='prod004'] .current-image-preview" data-target-selector="[data-product-id='prod004'] .product-card-carousel-img-container img, [data-product-id='prod004'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato10.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Producto 5 -->
+                    <div class="admin-card editable-card" data-product-id="prod005">
+                        <div class="card-header">
+                            <h4>Zapatos Oxford "Clásico Elite"</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productName005">Nombre:</label>
+                                <input type="text" id="productName005" value="Zapatos Oxford 'Clásico Elite'" class="editable-field" data-target-selector="[data-product-id='prod005'] h3" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="productDesc005">Descripción:</label>
+                                <textarea id="productDesc005" class="editable-field" data-target-selector="[data-product-id='prod005'] p">Diseño atemporal con un toque moderno. Perfecto para ocasiones formal es y profesionales.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice005">Precio:</label>
+                                <input type="text" id="productPrice005" value="$165.00" class="editable-field" data-target-selector="[data-product-id='prod005'] .product-price-tag" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="product-upload-005">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="product-url-005">Pegar URL</button>
+                                </div>
+                                <div id="product-upload-005" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-product-id='prod005'] .current-image-preview" data-target-selector="[data-product-id='prod005'] .product-card-carousel-img-container img, [data-product-id='prod005'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <div id="product-url-005" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato11.jpg" data-preview-target=".admin-card[data-product-id='prod005'] .current-image-preview" data-target-selector="[data-product-id='prod005'] .product-card-carousel-img-container img, [data-product-id='prod005'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato11.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Producto 6 -->
+                    <div class="admin-card editable-card" data-product-id="prod006">
+                        <div class="card-header">
+                            <h4>Sandalias Deportivas "Hydro"</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productName006">Nombre:</label>
+                                <input type="text" id="productName006" value="Sandalias Deportivas 'Hydro'" class="editable-field" data-target-selector="[data-product-id='prod006'] h3" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label for="productDesc006">Descripción:</label>
+                                <textarea id="productDesc006" class="editable-field" data-target-selector="[data-product-id='prod006'] p">Ligeras, transpirables y de secado rápido. Ideales para el verano y actividades acuáticas.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice006">Precio:</label>
+                                <input type="text" id="productPrice006" value="$75.00" class="editable-field" data-target-selector="[data-product-id='prod006'] .product-price-tag" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="product-upload-006">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="product-url-006">Pegar URL</button>
+                                </div>
+                                <div id="product-upload-006" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-product-id='prod006'] .current-image-preview" data-target-selector="[data-product-id='prod006'] .product-card-carousel-img-container img, [data-product-id='prod006'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <div id="product-url-006" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato12.jpg" data-preview-target=".admin-card[data-product-id='prod006'] .current-image-preview" data-target-selector="[data-product-id='prod006'] .product-card-carousel-img-container img, [data-product-id='prod006'] .product-actions-overlay img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato12.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Botón para añadir un nuevo producto -->
+                    <div class="admin-card add-new-card">
+                        <button class="btn btn-add-new" data-section-type="product"><i class="fas fa-plus"></i> Añadir Nuevo Producto</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Gestión de Categorías -->
+            <div id="categories-section" class="admin-card-section">
+                <h3><i class="fas fa-tags"></i> Editar Categorías</h3>
+                <div class="admin-card-grid">
+                    <!-- Tarjeta de edición para la Categoría 1 -->
+                    <div class="admin-card editable-card" data-category-id="1">
+                        <div class="card-header">
+                            <h4>FASHION</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryName1">Nombre:</label>
+                                <input type="text" id="categoryName1" value="FASHION" class="editable-field" data-target-selector="[data-category-id='1'] .category-title-overlay" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="category-upload-1">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="category-url-1">Pegar URL</button>
+                                </div>
+                                <div id="category-upload-1" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-category-id='1'] .current-image-preview" data-target-selector="[data-category-id='1'] img" data-property="src">
+                                </div>
+                                <div id="category-url-1" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato13.jpg" data-preview-target=".admin-card[data-category-id='1'] .current-image-preview" data-target-selector="[data-category-id='1'] img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato13.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para la Categoría 2 -->
+                    <div class="admin-card editable-card" data-category-id="2">
+                        <div class="card-header">
+                            <h4>SPRING</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryName2">Nombre:</label>
+                                <input type="text" id="categoryName2" value="SPRING" class="editable-field" data-target-selector="[data-category-id='2'] .category-title-overlay" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="category-upload-2">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="category-url-2">Pegar URL</button>
+                                </div>
+                                <div id="category-upload-2" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-category-id='2'] .current-image-preview" data-target-selector="[data-category-id='2'] img" data-property="src">
+                                </div>
+                                <div id="category-url-2" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato14.jpg" data-preview-target=".admin-card[data-category-id='2'] .current-image-preview" data-target-selector="[data-category-id='2'] img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato14.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para la Categoría 3 -->
+                    <div class="admin-card editable-card" data-category-id="3">
+                        <div class="card-header">
+                            <h4>FESTIVAL</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryName3">Nombre:</label>
+                                <input type="text" id="categoryName3" value="FESTIVAL" class="editable-field" data-target-selector="[data-category-id='3'] .category-title-overlay" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="category-upload-3">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="category-url-3">Pegar URL</button>
+                                </div>
+                                <div id="category-upload-3" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-category-id='3'] .current-image-preview" data-target-selector="[data-category-id='3'] img" data-property="src">
+                                </div>
+                                <div id="category-url-3" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato15.jpg" data-preview-target=".admin-card[data-category-id='3'] .current-image-preview" data-target-selector="[data-category-id='3'] img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato15.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para la Categoría 4 -->
+                    <div class="admin-card editable-card" data-category-id="4">
+                        <div class="card-header">
+                            <h4>SEASON</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryName4">Nombre:</label>
+                                <input type="text" id="categoryName4" value="SEASON" class="editable-field" data-target-selector="[data-category-id='4'] .category-title-overlay" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="category-upload-4">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="category-url-4">Pegar URL</button>
+                                </div>
+                                <div id="category-upload-4" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-category-id='4'] .current-image-preview" data-target-selector="[data-category-id='4'] img" data-property="src">
+                                </div>
+                                <div id="category-url-4" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato16.jpg" data-preview-target=".admin-card[data-category-id='4'] .current-image-preview" data-target-selector="[data-category-id='4'] img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato16.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para la Categoría 5 -->
+                    <div class="admin-card editable-card" data-category-id="5">
+                        <div class="card-header">
+                            <h4>URBAN</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryName5">Nombre:</label>
+                                <input type="text" id="categoryName5" value="URBAN" class="editable-field" data-target-selector="[data-category-id='5'] .category-title-overlay" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="category-upload-5">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="category-url-5">Pegar URL</button>
+                                </div>
+                                <div id="category-upload-5" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-category-id='5'] .current-image-preview" data-target-selector="[data-category-id='5'] img" data-property="src">
+                                </div>
+                                <div id="category-url-5" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato17.jpg" data-preview-target=".admin-card[data-category-id='5'] .current-image-preview" data-target-selector="[data-category-id='5'] img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato17.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para la Categoría 6 -->
+                    <div class="admin-card editable-card" data-category-id="6">
+                        <div class="card-header">
+                            <h4>LUXE</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryName6">Nombre:</label>
+                                <input type="text" id="categoryName6" value="LUXE" class="editable-field" data-target-selector="[data-category-id='6'] .category-title-overlay" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="category-upload-6">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="category-url-6">Pegar URL</button>
+                                </div>
+                                <div id="category-upload-6" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-category-id='6'] .current-image-preview" data-target-selector="[data-category-id='6'] img" data-property="src">
+                                </div>
+                                <div id="category-url-6" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato18.jpg" data-preview-target=".admin-card[data-category-id='6'] .current-image-preview" data-target-selector="[data-category-id='6'] img" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato18.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Botón para añadir una nueva categoría -->
+                    <div class="admin-card add-new-card">
+                        <button class="btn btn-add-new" data-section-type="category"><i class="fas fa-plus"></i> Añadir Nueva Categoría</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Gestión de Próximos Diseños -->
+            <div id="coming-soon-section" class="admin-card-section">
+                <h3><i class="fas fa-clock"></i> Editar Próximos Diseños</h3>
+                <div class="admin-card-grid">
+                    <!-- Tarjeta de edición para el Diseño "Modelo Elegancia Clásica" -->
+                    <div class="admin-card editable-card" data-cs-original-index="0" data-cs-hover-index="1">
+                        <div class="card-header">
+                            <h4>Modelo Elegancia Clásica</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="csName0">Nombre del Diseño:</label>
+                                <input type="text" id="csName0" value="Modelo Elegancia Clásica" class="editable-field" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='0'] .coming-soon-product-name" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen Principal:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="cs-upload-0">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="cs-url-0">Pegar URL</button>
+                                </div>
+                                <div id="cs-upload-0" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-cs-original-index='0'] .current-image-preview" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='0'] .coming-soon-image-display" data-property="src">
+                                </div>
+                                <div id="cs-url-0" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato16.jpg" data-preview-target=".admin-card[data-cs-original-index='0'] .current-image-preview" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='0'] .coming-soon-image-display" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato16.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                             <div class="form-group">
+                                <label for="csColor0">Color Temático (Hex):</label>
+                                <input type="color" id="csColor0" value="#2b5a74" class="editable-field" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='0']" data-property="backgroundColor">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de edición para el Diseño "Estilo Urbano Avant-Garde" -->
+                     <div class="admin-card editable-card" data-cs-original-index="1" data-cs-hover-index="0">
+                        <div class="card-header">
+                            <h4>Estilo Urbano Avant-Garde</h4>
+                            <button class="btn btn-sm btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="csName1">Nombre del Diseño:</label>
+                                <input type="text" id="csName1" value="Estilo Urbano Avant-Garde" class="editable-field" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='1'] .coming-soon-product-name" data-property="textContent">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen Principal:</label>
+                                <div class="image-upload-options">
+                                    <button class="btn btn-sm btn-toggle-upload" data-toggle-target="cs-upload-1">Subir Imagen</button>
+                                    <button class="btn btn-sm btn-toggle-url" data-toggle-target="cs-url-1">Pegar URL</button>
+                                </div>
+                                <div id="cs-upload-1" class="upload-area hidden">
+                                    <input type="file" class="image-upload-input" data-preview-target=".admin-card[data-cs-original-index='1'] .current-image-preview" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='1'] .coming-soon-image-display" data-property="src">
+                                </div>
+                                <div id="cs-url-1" class="url-area hidden">
+                                    <input type="text" placeholder="https://ejemplo.com/imagen.jpg" class="image-url-input" value="img/jpg/zapato17.jpg" data-preview-target=".admin-card[data-cs-original-index='1'] .current-image-preview" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='1'] .coming-soon-image-display" data-property="src">
+                                </div>
+                                <img src="img/jpg/zapato17.jpg" alt="Imagen actual" class="current-image-preview">
+                            </div>
+                             <div class="form-group">
+                                <label for="csColor1">Color Temático (Hex):</label>
+                                <input type="color" id="csColor1" value="#6d5550" class="editable-field" data-target-selector=".coming-soon-grid .coming-soon-card[data-original-product='1']" data-property="backgroundColor">
+                            </div>
+                            <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                        </div>
+                    </div>
+                    <!-- Botón para añadir un nuevo diseño -->
+                    <div class="admin-card add-new-card">
+                        <button class="btn btn-add-new" data-section-type="coming-soon"><i class="fas fa-plus"></i> Añadir Nuevo Diseño</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Gestión de CTA Newsletter -->
+            <div id="newsletter-cta-section" class="admin-card-section">
+                <h3><i class="fas fa-envelope"></i> Editar Sección de Suscripción (CTA)</h3>
+                <div class="admin-card editable-card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="ctaTitle">Título:</label>
+                            <input type="text" id="ctaTitle" value="Únete a la Élite del Calzado Vístete" class="editable-field" data-target-selector=".cta-section-distinct h2" data-property="textContent">
+                        </div>
+                        <div class="form-group">
+                            <label for="ctaText">Párrafo:</label>
+                            <textarea id="ctaText" class="editable-field" data-target-selector=".cta-section-distinct p" data-property="textContent">Sé el primero en acceder a lanzamientos exclusivos, ofertas especiales y contenido privilegiado de Vístete.</textarea>
+                        </div>
+                        <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Gestión del Pie de Página (Footer) -->
+            <div id="footer-section" class="admin-card-section">
+                <h3><i class="fas fa-shoe-prints"></i> Editar Pie de Página</h3>
+                <div class="admin-card editable-card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="footerAboutText">Texto "Sobre Vístete":</label>
+                            <textarea id="footerAboutText" class="editable-field" data-target-selector=".main-footer-robust .footer-section-robust.about p" data-property="textContent">Redefiniendo el paso de la humanidad, un zapato a la vez. Innovación, calidad y estilo incomparable.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="footerCopyright">Texto de Copyright:</label>
+                            <input type="text" id="footerCopyright" value="&copy; 2025 Vístete. Todos los derechos reservados. Diseñado para la excelencia." class="editable-field" data-target-selector=".footer-bottom-robust p" data-property="textContent">
+                        </div>
+                        <!-- Aquí podrías añadir campos para URLs de redes sociales, etc. -->
+                        <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Ajustes Generales (Logo, Lemas Globales) -->
+            <div id="general-settings" class="admin-card-section">
+                <h3><i class="fas fa-globe"></i> Ajustes Generales</h3>
+                <div class="admin-card editable-card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Logo del Sitio:</label>
+                            <div class="image-upload-options">
+                                <button class="btn btn-sm btn-toggle-upload" data-toggle-target="logo-upload">Subir Logo</button>
+                                <button class="btn btn-sm btn-toggle-url" data-toggle-target="logo-url">Pegar URL</button>
+                            </div>
+                            <div id="logo-upload" class="upload-area hidden">
+                                <input type="file" class="image-upload-input" data-preview-target="#general-settings .current-image-preview" data-target-selector=".main-header .logo img" data-property="src">
+                            </div>
+                            <div id="logo-url" class="url-area hidden">
+                                <input type="text" placeholder="https://ejemplo.com/logo.png" class="image-url-input" value="img/logo.png" data-preview-target="#general-settings .current-image-preview" data-target-selector=".main-header .logo img" data-property="src">
+                            </div>
+                            <img src="img/logo.png" alt="Logo actual" class="current-image-preview">
+                        </div>
+                        <div class="form-group">
+                            <label for="pageTitle">Título de la Página (en pestaña del navegador):</label>
+                            <input type="text" id="pageTitle" value="Vístete - Tu Estilo, Tu Camino" class="editable-field" data-target-selector="document.title" data-property="title">
+                        </div>
+                        <button class="btn btn-primary btn-save">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Script de JavaScript integrado -->
+    <script src="js/administrador.js"></script>
+</body>
+</html>
